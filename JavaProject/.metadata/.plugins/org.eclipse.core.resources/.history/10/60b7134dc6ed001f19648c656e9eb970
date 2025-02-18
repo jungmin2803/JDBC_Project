@@ -1,0 +1,35 @@
+package day0218;
+
+import java.util.Calendar;
+
+public class QuizArgs_11 {
+
+	public static void main(String[] args) {
+		// 매개변수를 이용하여(args) 다음과 같이 출력하시오(sangName,price,amount,totPrice)
+		/*
+		 * 상품명 : 갤럭시 폴드
+		 * 수량 : 6개
+		 * 가격 : 1200000원
+		 * 총금액 : 7200000원
+		 */
+		
+		//변수선언
+		
+		String sangName = args[0];
+
+		int price, amount, totprice;
+		
+		price=6;
+		amount=Integer.parseInt(args[1]);
+		totprice=price*amount;
+		
+		System.out.println("상품명 : %d\n수량 : %s개\n가격 : %f원\n총금액 : %d원");
+		
+
+		
+
+		
+		
+	}
+
+}
