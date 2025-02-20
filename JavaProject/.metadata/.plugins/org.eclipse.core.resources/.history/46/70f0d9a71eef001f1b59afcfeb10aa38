@@ -22,18 +22,16 @@ public class Quiz0219_12 {
 		
 		//입력
 		System.out.println("숫자를 입력하세요");
-		x=sc.nextInt();
+		x=Integer.parseInt(sc.nextLine());
 		System.out.println("**if문**");
 		
 		if(x%2==0)
 			System.out.println(x+"는 짝수");
-		else
-			System.out.println(x+"는 홀수");
-		
 		//삼항연산자
 		System.out.println("**삼항연산자**");
+		a=x%2==0?"짝수":"홀수";
 		
-		System.out.println(x+"는 "+(x%2==0?"짝수":"홀수"));
+		System.out.println(x+"는 짝수");
 		
 		
 		
