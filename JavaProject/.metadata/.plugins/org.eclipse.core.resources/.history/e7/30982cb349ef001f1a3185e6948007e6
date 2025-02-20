@@ -1,0 +1,23 @@
+package day0220;
+
+public class DoWhileTest_09 {
+
+	public static void main(String[] args) {
+		// dowhile문 과 while문의 비교
+		
+		int i=1;
+		
+		System.out.println("while문 결과");
+		while(i<=5)
+		{
+			//출력후 증가
+			System.out.printf(i++ +"  ");
+		}
+		System.out.println();
+		
+		System.out.println("do~while문 결과");
+		
+
+	}
+
+}

@@ -25,6 +25,10 @@ public class OperTest_03 {
 		System.out.println("나누기="+(double)(x/y));
 		System.out.println("나머지="+(x%y));
 		
+		
+		int c=x+y;
+		double d=c/2.0; // .0을 붙여줘야 나누기 할때 소수점 숫자가 표시된다
+		System.out.printf("평균= %.1f",d); //평균= 4.5
 	}
 
 }

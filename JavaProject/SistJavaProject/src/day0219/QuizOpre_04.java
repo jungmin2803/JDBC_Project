@@ -28,9 +28,10 @@ public class QuizOpre_04 {
 		System.out.println("백원: "+(money%1000)/100);
 		System.out.println("십원: "+(money%100)/10);
 		System.out.println("일원: "+money%10);
-
+		System.out.println("천원: "+money%10000);
 
 		
 	}
 
 }
+

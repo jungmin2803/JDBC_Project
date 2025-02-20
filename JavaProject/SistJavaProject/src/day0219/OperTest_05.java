@@ -12,7 +12,7 @@ public class OperTest_05 {
 		System.out.println(a>b);
 		System.out.println(a==b);
 		System.out.println(a==c);
-		System.out.println(a!=b); //!= : a와 b가 같지않는지
+		System.out.println(a!=b); //!= : a와 b가 같지않다
 		System.out.println(a<b&&b>c); //&&(and)는 둘다 true여야 true로 나옴 하나라도 false면 false로 나온다
 		System.out.println(a>b&&b>c); 
 		System.out.println(a<b||b<c); //||(or)는 둘중에 하나만 true여도 true로 나온다
@@ -29,3 +29,4 @@ public class OperTest_05 {
 	}
 
 }
+

@@ -35,23 +35,14 @@ public class IfMax_10 {
 				max=z;
 		
 		//출력
-		System.out.println("***if문***\nmax="+max);
-		
+		System.out.println("***if문***\nmax="+max);		
 		
 		
 		//삼항연산자
 		max=x>y&&x>z?x:y>z&&y>x?y:z;
 		
 		//출력
-		System.out.println("***삼항연산자***\nmax="+max);
-		
-		
-		
-			
-			
-			
-				
-		
+		System.out.println("***삼항연산자***\nmax="+max);			
 
 	}
 
