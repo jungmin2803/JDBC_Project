@@ -6,7 +6,7 @@ public class SubStringTest_06 {
 		// String index
 		
 		String str="나는 지금 쌍용교육센터에서 자바를 공부하고 있어요";
-		//charAt, substring (글자수에 띄어쓰기도 포함된다)
+		//charAt, substring (글자수에 띄어쓰기도 포함된다)(0부터 시작)
 		
 		char ch=str.charAt(6); // charAt :한글자만 가져올수있다
 		String word1=str.substring(6); // substring(int deginindex) : 지정한 위치부터 글자를 가져올수 있다

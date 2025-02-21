@@ -15,9 +15,7 @@ public class Quiz0219_13 {
 		 * (단 5개 이상은 10프로 DC 됩니다)
 		 * ========================
 		 * dc된 최종금액: 5940000원
-		 */
-
-		
+		 */		
 		Scanner sc=new Scanner(System.in);
 		
 		//변수선언
@@ -54,8 +52,7 @@ public class Quiz0219_13 {
 		
 		System.out.println("**삼항연산자**");
 		//삼항연산자
-		System.out.println("dc된 최종금액: "+(su>=5?(tot/10*9):tot)+"원");
-		
+		System.out.println("dc된 최종금액: "+(su>=5?(tot/10*9):tot)+"원");		
 		
 	}
 

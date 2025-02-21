@@ -9,15 +9,18 @@ public class Quiz0220 {
 		//짝수의 합:***
 		//홀수의 합:***
 		
-		int sum=0;		
-		for(int i=1;i<=100;i+=2) {
-			sum+=i;
-		}
-		System.out.println("홀수의 합: "+sum);
-		for(int i=1;i<=100;i+=2) {
-			sum+=1;
-			continue;
-		} System.out.println("짝수의 합: "+sum);	
+		int sum=0;
+		int tot=0;
+		for(int i=1;i<=100;i++) {
+			if(i%2==0) 
+				sum+=i;			
+			else 
+				tot+=i;			
+		}  System.out.println("짝수의 합: "+sum);
+		   System.out.println("홀수의 합: "+tot);
+				
+		
+			
 		
 	}
 	
@@ -28,26 +31,42 @@ public class Quiz0220 {
 		//1부터 **까지의 합은 ***입니다
 		Scanner sc=new Scanner(System.in);
 		
-		int i=1;
-		int b;		
-		int sum=0;
+		
+		int su;		
+		int sum=0; //합계 : 초기값=0; 곱셈 : 초기값=1;
 		
 		System.out.println("합계를 더할 숫자를 입력하시오");
-		b=sc.nextInt();
+		su=sc.nextInt();
 		System.out.println("숫자를 입력하면 1부터 입력한 숫자까지의 합계를 구해서 출력하시오");
 		
-		for(;i<=b;i++) {
+		for(int i=1;i<=su;i++) {
 			sum+=i;
-		} System.out.println("1부터 "+b+"까지의 합은 "+sum+"입니다");
+		} System.out.println("1부터 "+su+"까지의 합은 "+sum+"입니다");
 		
 	}
 	
+	public static void quiz3() {
+		//**부터 ***까지의 곱은 ****입니다
+		Scanner sc=new Scanner(System.in);
+		int su,dan,i;
+		int sum=1;
+		
+		System.out.println("두 수를 입력하면 두수 사이의 숫자가 곱해집니다");
+		su=sc.nextInt();
+		dan=sc.nextInt();
+		i=su;
+		for(;su<=dan;su++) {
+			sum*=su;
+		} System.out.println(i+"부터 "+dan+"까지의 곱은 "+sum+"입니다");
+			
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		//quiz1();
-		quiz2();
+		//quiz2();
+		//quiz3();
 	}
 
 }

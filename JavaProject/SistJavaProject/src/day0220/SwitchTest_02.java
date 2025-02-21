@@ -40,7 +40,7 @@ public class SwitchTest_02 {
 		}
 		
 		
-		//학점을 switch문으로 바꿔서 출력
+		//예제3 학점을 switch문으로 바꿔서 출력
 		
 		int score=59;
 		char grade;

@@ -23,6 +23,7 @@ public class ScanIf_11 {
 		int java,jsp,spring,tot;
 		double avg;
 		
+		//입력
 		System.out.println("이름입력==>");
 		name=sc.nextLine();
 		System.out.println("java,jsp,spring 과목점수를 차례로 입력하세요");
@@ -32,10 +33,7 @@ public class ScanIf_11 {
 		
 		//계산
 		tot=java+jsp+spring;
-		avg=tot/3;
-		
-		
-		
+		avg=tot/3;				
 		
 		//출력
 		System.out.println(name+"님의 시험결과");
@@ -50,17 +48,10 @@ public class ScanIf_11 {
 			else
 				a="불합격";
 		//if문 출력
-		System.out.println("평가:"+a);
-					
-				
+		System.out.println("평가:"+a);				
 		
 		//삼항연산자 출력
-		System.out.println("평가:"+(avg>=80?"참잘함":avg>=70?"노력하세요":"불합격"));
-
-			
-		
-		
-		
+		System.out.println("평가:"+(avg>=80?"참잘함":avg>=70?"노력하세요":"불합격"));		
 		
 	}
 
