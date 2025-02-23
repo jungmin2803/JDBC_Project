@@ -19,6 +19,7 @@ public class Test_00 {
 				break;
 		  }
 			  else if(rnd==2){
+					System.out.println("편의점");
 					break;
 			  }
 			  else if(rnd==3){

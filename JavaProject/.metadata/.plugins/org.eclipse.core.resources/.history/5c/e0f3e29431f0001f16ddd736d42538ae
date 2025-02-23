@@ -12,13 +12,14 @@ public class Test_00 {
 		int su;
 		while(true) {
 			System.out.println("게임을 시작하겠습니까? Y/N");
-			su=Integer.parseInt("y");
+			su=sc.nextInt("Y");
 			int rnd=(int)(Math.random()*10)+1;
 			if(rnd==1) {
 				System.out.println("치킨");
 				break;
 		  }
 			  else if(rnd==2){
+					System.out.println("편의점");
 					break;
 			  }
 			  else if(rnd==3){
