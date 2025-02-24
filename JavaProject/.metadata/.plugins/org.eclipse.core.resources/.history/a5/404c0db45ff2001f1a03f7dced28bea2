@@ -1,0 +1,14 @@
+package day0224;
+
+public class ArrayIntTest_06 {
+
+	public static void main(String[] args) {
+		// 배열선언하면서 초기값들을 저장할수 있다(배열선언과 동시에 초기값 주는법) 
+		
+		int [] arr= {8,6,11,21,99,32,100,55,99};
+		System.out.println(arr.length);
+		
+		
+	}
+
+}
