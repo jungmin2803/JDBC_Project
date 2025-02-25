@@ -18,35 +18,34 @@ public class Quiz0224 {
 		int [] rank=new int[4];		
 		
 		
-		
-		for(int i=0;i<4;i++)			
-		{  	tot[i]=java[i]+oracle[i]+spring[i];
-		
-		avg[i]=(double)tot[i]/3;
-		
+		// 총점 평균 구하기
+		for(int i=0;i<name.length;i++) //0~3번지			
+		{  	
+		tot[i]=java[i]+oracle[i]+spring[i];		
+		avg[i]=(double)tot[i]/3;		
 		}
-		for(int i=0;i<4;i++)
-		{ rank[i]=1;
-			for(int j=0;j<4;j++)
+		// 등수 구하기
+		for(int i=0;i<name.length;i++)
+		{ 
+			//순위배열을 1등으로 초기화
+			rank[i]=1;
+			for(int j=0;j<name.length;j++)
 			{
-				if(avg[i]<avg[j])
+				//반복하면서 나보다 큰점수가 나오면 나의순위를 1증가
+				if(tot[i]<tot[j])
 				rank[i]++;
 			}
 		}
+		//출력
 		System.out.println("번호\t이름\t자바\t오라클\t스프링\t총점\t평균\t등수");
 		System.out.println("=================================================================");
 		
-		//출력
-		for(int i=0;i<4;i++) {
-			System.out.println((i+1)+"\t"+name[i]+"\t"+java[i]+"\t"+oracle[i]+"\t"+spring[i]+"\t"+tot[i]+"\t"+avg[i]+"\t"+rank[i]);
-			
-		}
+		for(int i=0;i<name.length;i++) 
+		{
+			System.out.printf("%d\t%s\t%d\t%d\t%d\t%d\t%.1f\t%d\n"
+					,i+1,name[i],java[i],oracle[i],spring[i],tot[i],avg[i],rank[i]);			
+		}   //평균 소수점 한자리를 구하기 위해  printf로 출력
 		
-			
-		
-		
-		
-
 	}
 
 }

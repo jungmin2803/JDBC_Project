@@ -27,8 +27,9 @@ public class ArrayTest_04 {
 		//배열은 For문으로 출력
 		for(int i=0;i<arr.length;i++) //배열은0부터 시작해서 0,1,2가 되는데 연산식에 <=arr.length로 사용하면 배열의 갯수(3)으로 출력하여 에러남.
 		{
-			System.out.println(arr[i]);
+			System.out.print(arr[i]+" "); // 100 50 200
 		}
+		System.out.println();
 		System.out.println("=============");
 		
 		for(int i=0;i<arr2.length;i++)
