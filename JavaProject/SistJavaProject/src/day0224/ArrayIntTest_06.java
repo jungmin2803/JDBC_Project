@@ -7,7 +7,7 @@ public class ArrayIntTest_06 {
 		
 		int [] arr= {8,6,11,21,99,32,100,55,99}; // 공식 자료형 [] 배열명= {배열의 초기값}; //8이 0번지로 고정
 		
-		System.out.println("arr의 갯수: "+arr.length);
+		System.out.println("arr의 갯수: "+arr.length); //해당 배열의 총 갯수
 		
 		System.out.println("**출력방법1_for**"); //0: 8
 		

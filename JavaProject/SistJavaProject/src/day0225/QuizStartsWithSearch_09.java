@@ -34,28 +34,40 @@ public class QuizStartsWithSearch_09 {
 		{
 			System.out.println("검색할 성을 입력해주세요");
 			search=sc.nextLine();
+			
+			//종료
 			if(search.equals("종료"))
 			{
 				System.out.println("검색을 종료합니다");
 				break;
-			}	// a="abcde"
+			}	
+				//초기값 설정
 				find=false;
-				cnt=0;
+				cnt=0;				
+				
 				for(int i=0;i<celeb.length;i++)
 				{		
-						if(celeb[i].startsWith(search)) //비교해서 같다면 true
+						//비교해서 같다면 출력
+						if(celeb[i].startsWith(search)) //배열에서 찾는 값의 첫글자가 입력값과 일치할때만 출력
 						{
 							find=true;
-							System.out.println(i+1+": "+celeb[i]);	
+							System.out.println(i+": "+celeb[i]);	
 							cnt++;
 						}
-				}	
-						System.out.println("\t"+"총 "+cnt+"명 검색");				
-				//	
-				if(!find)
-				{
+				}		
+						if(find) //find==true
+							System.out.println("\t"+"총 "+cnt+"명 검색");				
+							
+						else //find==false		
+							System.out.println(search+"씨 성을 가진 연예인은 없습니다");
+							
+				/* 위에 있는 if(find)와 다른방법
+				if(cnt==0)
 					System.out.println(search+"씨 성을 가진 연예인은 없습니다");
-				}				
+				else
+					System.out.println("\t"+"총 "+cnt+"명 검색");
+				*/
+				
 		}
 	}
 }

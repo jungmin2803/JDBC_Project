@@ -1,5 +1,7 @@
 package day0225;
 
+import java.util.Scanner;
+
 public class Test_00 {
 
 	public static void Quiz1() {
@@ -76,11 +78,73 @@ public class Test_00 {
 		
 		
 	}
+	
+	public static void Quiz3() {
+		/*
+		 * 성을 입력시 그 성씨를 가진 사람과 총인원수를 출력할것!!
+		 * 종료라고 입력시 프로그램 종료
+		 * 
+		 * 검색할 성을 입력해주세요
+		 * 손
+		 * 3:손흥민
+		 * 7:손미나
+		 * 		총 2명 검색
+		 * 검색할 성을 입력해주세요
+		 * 전
+		 * 전 씨성을 가진 연예인은 없습니다
+		 * 검색할 성을 입력해주세요
+		 * 종료
+		 * 검색을 종료합니다
+		 * 
+		 */
+
+		
+		String [] celeb= {"공유","신민아","이정재","손흥민","이강인","이효리","이진","손미나"};
+		String name;
+		int cnt;
+		boolean flag;
+		
+		Scanner sc=new Scanner(System.in);
+		//반복문 
+		while(true)
+		{	//입력
+			System.out.println("검색할 성을 입력해주세요");
+			name=sc.nextLine();
+			//종료선언 (무한루프종료)
+			if(name.equals("종료"))
+			{
+				System.out.println("검색을 종료합니다");
+				break;
+			}	//초기값 설정
+				flag=false;
+				cnt=0;
+				//배열 0번지~끝까지 반복
+				for(int i=0;i<celeb.length;i++)
+				{		//배열 첫글자를 가져와서 입력값과 비교				
+						if(celeb[i].startsWith(name))
+						{
+							//입력값이 일치하면 출력
+							flag=true;
+							System.out.println(i+1+": "+celeb[i]); //몇번째 이름
+							cnt++;
+						}							
+				}
+				System.out.println("\t총 "+cnt+"명 검색");
+			if(!flag)
+			{
+				System.out.println(name+"씨성을 가진 연예인은 없습니다");
+			}			
+		}
+		
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		
 		//Quiz1();
-		Quiz2();
-		
+		//Quiz2();
+		Quiz3();
 		
 
 	}

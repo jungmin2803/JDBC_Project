@@ -8,10 +8,18 @@
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="java.nio.file.spi.FileSystemProvider"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
-    <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="java.lang.ScopedValue"/>
+    <fullyQualifiedTypeName name="java.net.MulticastSocket"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="java.net.MulticastSocket"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="day0226.Ex8Object"/>
+    <fullyQualifiedTypeName name="day0226.Ex9cardTest"/>
+    <fullyQualifiedTypeName name="day0226.Ex10Student"/>
+    <fullyQualifiedTypeName name="day0226.Ex11Counter"/>
+    <fullyQualifiedTypeName name="day0226.Ex12Info"/>
+    <fullyQualifiedTypeName name="day0226.Ex9Card"/>
+    <fullyQualifiedTypeName name="day0226.QuizObject"/>
 </qualifiedTypeNameHistroy>
