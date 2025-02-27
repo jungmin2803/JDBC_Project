@@ -7,8 +7,9 @@ public class ArrayScanSwitch_02 {
 	public static void main(String[] args) {
 		// 인원수를 입력후 인원수만큼 이름 자바,오라클 두점수 입력후
 		// 총점, 평균, 순위,등급을 구하시오
-
+				
 		Scanner sc=new Scanner(System.in);
+		//배열선언
 		int inwon;
 		int [] java,oracle,sum,rank;
 		String [] grade,name;

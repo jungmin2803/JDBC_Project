@@ -4,7 +4,7 @@ public class ArrayStringTemp_07 {
 
 	public static void main(String[] args) {
 		// 이름 오름차순으로 정렬 시 점수도 이름 따라 같이 정렬
-		
+		//배열선언
 		String [] names= {"이효리","유재석","하하","김영웅"};
 		int [] ages= {34,52,48,35};
 		
@@ -16,8 +16,7 @@ public class ArrayStringTemp_07 {
 		}
 		
 		//이름의 오름차순
-		//정렬 for문 작성
-		
+		//정렬 for문 작성		
 		//문자열 오름차순
 		for(int i=0;i<names.length-1;i++)
 		{

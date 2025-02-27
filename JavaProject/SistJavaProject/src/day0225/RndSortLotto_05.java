@@ -5,12 +5,12 @@ import java.util.Arrays;
 public class RndSortLotto_05 {
 
 	public static void main(String[] args) {
-		// 
 		
+		//배열선언
 		int [] lotto=new int[6];
 		
 		//임의의 수를 로또변수에 발생시켜서 넣어준다
-		for(int i=0;i<lotto.length;i++)
+		for(int i=0;i<lotto.length;i++) //배열의 0부터 총갯수-1 만큼 1씩 증가
 		{
 			lotto[i]=(int)(Math.random()*45)+1;//1~45중의 랜덤수 발생
 			//System.out.println("뽑은값: "+lotto[i]); 이것만 입력하면 중복수가 나옴

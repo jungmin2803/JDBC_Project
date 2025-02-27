@@ -1,0 +1,44 @@
+package day0227;
+
+class Test01 {
+	
+	private String MyName;
+	private static String Message;
+	
+	public Test01(String MyName, String Message)
+	{
+		this.MyName=MyName;
+		this.Message=Message;				
+		System.out.println("주민명: "+MyName+"메세지: "+Message);
+	}
+	
+	public String getMyName()
+	{
+		return MyName;
+	}
+	
+	public String getMessage()
+	{
+		return Message;
+	}
+	
+}
+////////////////////////////
+public class Test00 {
+
+	public static void main(String[] args) {
+		/*	
+		 * [개인정보]	 
+		 * 주민명: 민영기
+		 * 메세지: 행복하게 살자
+		 * 지역: 대전
+		 * 나이: 23
+		 * 
+		 */
+		
+		Test01 t1=new Test01("민영기", "행복하게 살자");
+		
+
+	}
+
+}
