@@ -41,7 +41,7 @@ public class Ex2ConstTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//인자있는 생성자 생성 //전달받을 값을 입력하여 초기화 //생성자 생성과 동시에 수정가능
+		//인자있는 생성자 생성 //전달받을 값을 입력하여 초기화 //객체 생성과 동시에 수정가능
 		Const con1=new Const(300);
 		System.out.println(con1.num);
 
@@ -50,7 +50,7 @@ public class Ex2ConstTest {
 		//con2.num=200;
 		System.out.println(con2.num);
 		
-		//메서드출력
+		//getter메서드 출력// 인스턴스 변수는 무조건 객체 생성 해줘야됨 
 		Const con3=new Const();		
 		System.out.println(con3.getNumber());
 		

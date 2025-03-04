@@ -9,10 +9,11 @@ public class QuizShopTest {
 		Calendar cal=Calendar.getInstance();
 		
 		QuizShop q1=new QuizShop();
-		QuizShop q2=new QuizShop();
+		//QuizShop q2=new QuizShop();
+		QuizShop q2=new QuizShop("땅콩잼", 100, 11000);
 		
 		q1.setQuizShop("땅콩버터", 100, 11000);
-		q2.setQuizShop("사과", 200, 5000);
+		//q2.setQuizShop("사과", 200, 5000);
 		
 		QuizShop.sjName="이마트 강동지점";
 		

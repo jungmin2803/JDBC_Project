@@ -8,26 +8,47 @@ public class QuizShop {
 	private int su;
 	private int dan;
 	
-	
-	public String getSpName() {
-		return spName;
-	}
+	//setter 메서드
 	public void setSpName(String spName) {
 		this.spName = spName;
 	}
-	public int getSu() {
-		return su;
-	}
+	
 	public void setSu(int su) {
 		this.su = su;
 	}
-	public int getDan() {
-		return dan;
-	}
+	
 	public void setDan(int dan) {
 		this.dan = dan;
 	}
 	
+	//getter 메서드
+	public String getSpName() {
+		return spName;
+	}
+
+	public int getSu() {
+		return su;
+	}
+
+	public int getDan() {
+		return dan;
+	}
+	
+	//디폴트 생성자
+	public QuizShop() {
+	// TODO Auto-generated constructor stub
+	}
+	
+	
+	//명시적 생성자 //생성과 동시에 초기값 지정
+	public QuizShop(String spName, int su, int dan)
+	{
+		this.spName=spName;
+		this.su=su;
+		this.dan=dan;
+	}
+
+	//명시적 set 메서드 // 디폴트 생성자 생성 , 초기값 따로 지정
 	public void setQuizShop(String spName, int su, int dan)
 	{
 		this.spName=spName;
@@ -35,6 +56,7 @@ public class QuizShop {
 		this.dan=dan;
 	}
 	
+	//출력
 	public void getQuizShop()
 	{	cnt++;
 		System.out.println("입고물품"+cnt);

@@ -1,0 +1,91 @@
+package day0228;
+
+
+
+class Ex0Score{
+	
+	
+	private String myName;
+	private int java;
+	private int oracle;
+	private int spring;
+	
+	private static String mes="쌍용고 4반 중간고사";	
+
+	//setter && getter
+	public String getMyName() {
+		return myName;
+	}
+	public void setMyName(String myName) {
+		this.myName = myName;
+	}
+	public int getJava() {
+		return java;
+	}
+	public void setJava(int java) {
+		this.java = java;
+	}
+	public int getOracle() {
+		return oracle;
+	}
+	public void setOracle(int oracle) {
+		this.oracle = oracle;
+	}
+	public int getSpring() {
+		return spring;
+	}
+	public void setSpring(int spring) {
+		this.spring = spring;
+	}
+
+	
+	public static String getMes() {
+		return mes;
+	}
+	public static void setMes(String mes) {
+		Ex0Score.mes = mes;
+	}
+	
+	//set메서드
+	public void setScore(String name, int java, int oracle, int spring)
+	{
+		myName=name;
+		this.java=java;
+		this.oracle=oracle;
+		this.spring=spring;		
+	}
+	
+	public int getTot()
+	{
+		return java+oracle+spring;
+	}
+	public double getAge()
+	{
+		return getTot()/3.0;
+	}
+	
+
+
+}
+
+
+public class Ex0Test {
+	
+
+	//출력
+	
+	public static void scoreOut(Ex0Score score)
+	{
+		System.out.println("이름: "+score.getMyName()+"\njava: "+score.getJava()+"\noracle: "+score.getOracle()+"\nspring: "+score.getSpring()
+		+"\n합계: "+score.());
+		
+	}
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

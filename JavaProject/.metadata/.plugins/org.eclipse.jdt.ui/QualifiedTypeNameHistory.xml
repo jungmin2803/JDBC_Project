@@ -5,13 +5,9 @@
     <fullyQualifiedTypeName name="java.io.ObjectInputStream.GetField"/>
     <fullyQualifiedTypeName name="java.lang.CharSequence"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
-    <fullyQualifiedTypeName name="java.nio.file.spi.FileSystemProvider"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.lang.ScopedValue"/>
     <fullyQualifiedTypeName name="java.net.MulticastSocket"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="day0226.Ex8Object"/>
     <fullyQualifiedTypeName name="day0226.Ex9cardTest"/>
@@ -23,7 +19,6 @@
     <fullyQualifiedTypeName name="day0226.QuizObject"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="day0227.Ex1Object"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="day0227.Const"/>
     <fullyQualifiedTypeName name="day0227.MyInfo"/>
     <fullyQualifiedTypeName name="day0227.Orange"/>
@@ -46,4 +41,23 @@
     <fullyQualifiedTypeName name="day0227.Input"/>
     <fullyQualifiedTypeName name="java.util.Calendar"/>
     <fullyQualifiedTypeName name="day0227.QuizShop"/>
+    <fullyQualifiedTypeName name="day0228.Ex1ObjectTest"/>
+    <fullyQualifiedTypeName name="day0228.Coffee"/>
+    <fullyQualifiedTypeName name="day0228.MyShop"/>
+    <fullyQualifiedTypeName name="day0228.Sangjum"/>
+    <fullyQualifiedTypeName name="day0228.Test1"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="day0228.Score"/>
+    <fullyQualifiedTypeName name="day0228.MyBag"/>
+    <fullyQualifiedTypeName name="java.nio.file.spi.FileSystemProvider"/>
+    <fullyQualifiedTypeName name="day0228.Student"/>
+    <fullyQualifiedTypeName name="day0228.StuInfos"/>
+    <fullyQualifiedTypeName name="day0228.Ex0Score"/>
+    <fullyQualifiedTypeName name="day0228.Emp"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="day0228.StrudentScoreResult"/>
+    <fullyQualifiedTypeName name="day0228.StudentScore"/>
+    <fullyQualifiedTypeName name="day0228.jungbo"/>
 </qualifiedTypeNameHistroy>

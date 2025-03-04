@@ -1,0 +1,74 @@
+package day0228;
+
+import java.util.Scanner;
+
+//사원명   기본급   가족수    초과시간    가족수당    초과근무수당   총급여
+
+
+class Emp{
+	//멤버
+	//변수: 사원명(name) 기본급(pay)  가족수(famSu) 초과근무시간(timeSu) 
+	//메서드: setters && getters,  getFamSudang   getTimeSudang,   getTotalPay
+	
+	//변수선언
+	private String name;
+	private int pay,famSu,timeSu;
+	
+	//setter && getters
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getPay() {
+		return pay;
+	}
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
+	public int getFamSu() {
+		return famSu;
+	}
+	public void setFamSu(int famSu) {
+		this.famSu = famSu;
+	}
+	public int getTimeSu() {
+		return timeSu;
+	}
+	public void setTimeSu(int timeSu) {
+		this.timeSu = timeSu;
+	}
+	
+	
+	
+	
+	
+	
+}
+/////////////////////
+//메인에서는 인원을 입력후 해당 사원에 대한 이름, 기본급, 가족수, 오버타임을 입력받아 출력할것!!!
+public class EmpSalery {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int inwon;
+		
+		System.out.println("사원수를 입력하세요");
+		inwon=sc.nextInt();
+		Emp [] emp=new Emp[inwon];
+		for(int i=1;i<=inwon;i++)
+		{
+			
+			System.out.println("사원의 이름을 입력하세요");
+			emp[i].setName(sc.nextLine());
+			System.out.println("기본급으 입력하세요");
+			emp[i].setPay(i);
+			
+		}
+		
+	}
+
+}
