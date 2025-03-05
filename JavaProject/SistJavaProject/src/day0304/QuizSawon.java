@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 홍길동   개발부  2000000  1000000  3000000
  */
 class Sawon{
-	
+	//인스턴스 변수
 	private String sawonName,buseo;
 	private int gibonPay;
 	
@@ -26,6 +26,7 @@ class Sawon{
 		this.gibonPay=gibonPay;
 	}
 	
+	//getter메서드
 	public String getName() {
 		return sawonName;		
 	}
@@ -36,18 +37,26 @@ class Sawon{
 		return gibonPay;
 	}
 	
+	//보너스
 	public int getBonus() {
 		int bonus=0;
 		if(buseo.equals("개발부"))
 			bonus=1000000;
 		else
 			bonus=500000;
-		return bonus;			
+		return bonus;	
+		/*if(buseo.equals("개발부"))
+		return 1000000;
+		else
+		return 500000;*/
 	}
 	
+	//총급여
 	public int getTotPay() {
 		int totPay=gibonPay+getBonus();
-		return totPay;		
+		return totPay;	
+		
+		//return gibonPay+getBonus();
 	}
 	
 	
@@ -55,11 +64,12 @@ class Sawon{
 
 
 public class QuizSawon {
-
+	//제목 메서드
 	public static void sawonTitle(){
 		System.out.println("========================================");
 		System.out.println("사원명\t부서\t기본급\t보너스\t총급여");
 	}
+	//출력 메서드
 	public static void write(Sawon sawon) {
 		
 		sawonTitle();
@@ -70,9 +80,10 @@ public class QuizSawon {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
+		//변수선언
 		Sawon sawon;
 		
-		
+		//입력
 		System.out.println("사원명?");
 		String name=sc.nextLine();
 		System.out.println("부서?");
@@ -80,8 +91,10 @@ public class QuizSawon {
 		System.out.println("기본급?");
 		int gibonPay=Integer.parseInt(sc.nextLine());
 		
+		//초기값 생성
 		sawon=new Sawon(name, boseo, gibonPay);
 		
+		//출력
 		write(sawon);
 		
 
