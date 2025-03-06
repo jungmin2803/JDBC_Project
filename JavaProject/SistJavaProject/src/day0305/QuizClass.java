@@ -1,6 +1,7 @@
 package day0305;
 
 import java.awt.desktop.SystemSleepEvent;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 class Company{
@@ -40,15 +41,27 @@ class Company{
 		
 	//직급에 따라 기본급: 부장->450 과장->350 대리->280 사원->220 getGibonPay()
 	public int getGibonPay() {
-		int gibonPay;
+		/*int gibonPay;
 		if(position.equals("부장"))
 			gibonPay=4500000;
 		else if(position.equals("과장"))
 			gibonPay=3500000;
 		else if(position.equals("대리"))
 			gibonPay=2800000;
-		else
+		else if(position.equals("사원"))
 			gibonPay=2200000;
+		else
+			gibonPay=0;
+		return gibonPay;*/
+		
+		int gibonPay=switch(position)
+				{
+				case"부장"->4500000;
+				case"과장"->3500000;
+				case"대리"->2800000;
+				case"사원"->2200000;
+				default->0;
+				};
 		return gibonPay;
 	}
 	//직급에 따라 수당: 부장,과장==> 100 대리,사원==>70만원 getSudangPay()
@@ -91,15 +104,27 @@ public class QuizClass {
 	}
 	
 	
-	//한개의 사원데이타 출력 메서드 writeSawon()
+	//반복문을 사용한 사원데이타 출력 메서드 writeSawon()
 	public static void writeSawon(Company[]myCompany) {
 		
 		for(int i=0;i<myCompany.length;i++)
 		{
 			System.out.printf("%s\t%s\t%d\t%d\t%d\t%d\t%d",
-					myCompany[i].getStaff(),myCompany[i].getPosition(),myCompany[i].getGibonPay(),myCompany[i].getSudagPay(),myCompany[i].getFamSudang(),myCompany[i].getTax(),myCompany[i].getNetPay());
+					myCompany[i].getStaff(),myCompany[i].getPosition(),myCompany[i].getGibonPay()
+					,myCompany[i].getSudagPay(),myCompany[i].getFamSudang(),myCompany[i].getTax(),myCompany[i].getNetPay());
 			System.out.println();
 		}
+				
+	}
+	//한개의 사원데이타 출력 메서드 writeSawon2()
+	public static void writeSawon2(Company mc) {
+		
+		NumberFormat nf=NumberFormat.getInstance();
+		
+		System.out.println(mc.getStaff()+"\t"+mc.getPosition()+"\t"
+				+nf.format(mc.getGibonPay())+"\t"+nf.format(mc.getSudagPay())+"\t"
+				+nf.format(mc.getFamSudang())+"\t"+nf.format(mc.getTax())+"\t"+nf.format(mc.getNetPay()));
+		
 	}
 
 	public static void main(String[] args) {
@@ -128,10 +153,18 @@ public class QuizClass {
 		}
 		//제목출력
 		showTitle();
-		//반복문통해서 데이타 출력하는 메서드 호출
 		
+		//데이타 출력하는 메서드 호출		
 		writeSawon(myCompany);
 		
+		System.out.println();
+		//제목출력
+		showTitle();
+		//반복문 통해서 데이타 출력하는 메서드 호출
+		for(int i=0;i<myCompany.length;i++)
+		{
+			writeSawon2(myCompany[i]);
+		}
 	}
 
 }

@@ -1,0 +1,34 @@
+package day0306;
+
+import java.util.Scanner;
+
+public class QuizReadWrite {
+
+	Scanner sc=new Scanner(System.in);
+	static final String 
+	
+	
+	
+	
+	//1.상품추가  2.상품전체입고현황 9.종료	
+	public int getMenu()
+	{	int num=0;
+	
+	
+		return num;
+	}
+	
+	//입력후 파일에 저장 sangpumAdd()
+	//fw.write(상품명+","+수랑+","+"단가"+"\n")
+	
+	//전체 출력  sangpumALLDatas()
+	//전체 금액이 10만원 이상이면 10프로 할인
+	//번호   상품명   수량   단가   금액   할인  총금액
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//1번이면 입력메서드 호출..2번이면 출력메서드호출  9번이면 종료
+	}
+
+}
