@@ -1,0 +1,29 @@
+package day0307;
+
+import java.util.List;
+import java.util.Vector;
+
+public class Ex4List {
+
+	public static void main(String[] args) {
+		
+		//List<String> list=new Vector<String>();
+		Vector<String> list=new Vector<String>();
+		
+		//디폴트 생성자의 갱우 기본할당크기 10
+		System.out.println("초기할당 갯수: "+list.capacity()); //초기할당 갯수: 10
+		System.out.println("초기데이타 갯수: "+list.size()); //초기데이타 갯수: 0
+	
+		list.add("사과");
+		list.add("오렌지");
+		list.add("사과");
+		list.add("키위");
+		list.add("오렌지");
+		
+		System.out.println("초기할당 갯수: "+list.capacity()); 
+		System.out.println("초기데이타 갯수: "+list.size());
+		
+		
+	}
+
+}

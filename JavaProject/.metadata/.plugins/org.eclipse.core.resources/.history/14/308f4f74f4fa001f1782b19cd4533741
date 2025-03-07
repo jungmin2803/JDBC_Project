@@ -1,0 +1,23 @@
+package day0306;
+
+
+
+public class ExbackJun {
+	
+	  public int solution(double flo) {
+	        int answer = 0;
+	        
+	        
+	        
+	        return(int)flo; 
+	        
+	        
+	    }
+	
+    public static void main(String[] args) {
+        
+    	ExbackJun bj=new ExbackJun();
+    	double flo=1.42;
+       System.out.println(bj.solution(flo));
+    }
+}
