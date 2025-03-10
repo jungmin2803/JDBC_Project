@@ -1,0 +1,51 @@
+package day0310;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class QuizSwing extends JFrame {
+	
+	Container cp;
+	JLabel lblSu1,lblSu2,lblResult;
+	JTextField tfSu1,tfSu2;
+	JButton btn1,btn2,btn3,btn4;
+	
+	//생성자
+	public QuizSwing(String title) {
+		super(title); //JFrame부모생성자를 통해서 창제목을 통해서 제목을 입력
+		
+		//위치,너비
+		this.setBounds(1000, 100, 500, 600);//창 위치,크기
+		
+		
+		cp=this.getContentPane();
+		cp.setBackground(new Color(127,255,212));
+		
+		
+		initDesign();
+		
+		this.setVisible(true);
+		
+		
+	}
+	
+	public void initDesign() {
+		this.setLayout(null);
+		lblSu1=new JLabel("숫자1");
+		lblSu2=new JLabel("숫자2");
+		
+		lblSu1.setBounds(10, 30, 50, 30);
+		this.add(lblSu1);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new QuizSwing("간단한 사칙연산");
+	}
+
+}
