@@ -31,7 +31,7 @@ public class CanvasImage05 extends JFrame {
 		cp=this.getContentPane();
 
 		//메인프레임 종료
-                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//창 색상
 		cp.setBackground(Color.white);
