@@ -29,6 +29,7 @@ public class SwingIcon5 extends JFrame {
 		
 		
 		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cp.setBackground(new Color(238,130,238));
 		
 		initDesige();

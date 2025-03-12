@@ -30,6 +30,7 @@ public class BtnArrayEvent7 extends JFrame implements ActionListener {
 		
 		
 		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cp.setBackground(new Color(127,255,212));
 		
 		initDesign();

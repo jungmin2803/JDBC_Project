@@ -1,0 +1,48 @@
+package day0312;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class CheckRadio02 extends JFrame {
+	
+	Container cp;	
+	JCheckBox cbDriverLic,cbBOld;
+	JCheckBox[] cbHobby=new JCheckBox[4];
+	JButton btnHobby;
+	
+	JLabel lblResult;
+	
+	//생성자
+	public CheckRadio02(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 500, 600);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(153,204,255));		
+		initDesign();		
+		this.setVisible(true);		
+		
+	}
+
+	public void initDesign() 
+	{
+		this.setLayout(null);
+		cbDriverLic=new JCheckBox("운전면허");
+		cbDriverLic.setBounds(50, 50, 100, 30);
+		this.add(cbDriverLic);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new CheckRadio02("스윙레이아웃 #3");
+	}
+
+}

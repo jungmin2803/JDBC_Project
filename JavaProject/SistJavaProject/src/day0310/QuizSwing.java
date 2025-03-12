@@ -65,20 +65,20 @@ public class QuizSwing extends JFrame implements ActionListener {
 		btn3=new JButton("곱하기");
 		btn4=new JButton("나누기");
 		
-		btn1.setBounds(70, 170, 150, 30);
+		btn1.setBounds(0, 170, 300, 30);
 		btn1.setBackground(new Color(169, 169, 169));
 		this.add(btn1);		
 		
-		btn2.setBounds(70, 210, 150, 30);
+		btn2.setBounds(00, 210, 300, 30);
 		btn2.setBackground(new Color(169, 169, 169));
 		this.add(btn2);		
 		
-		btn3.setBounds(70, 250, 150, 30);
+		btn3.setBounds(00, 250, 300, 30);
 		btn3.setBackground(new Color(169, 169, 169));
 		this.add(btn3);
 		
-		btn4=new JButton("나누기");
-		btn4.setBounds(70, 290, 150, 30);
+		
+		btn4.setBounds(00, 290, 300, 30);
 		btn4.setBackground(new Color(169, 169, 169));
 		this.add(btn4);
 		

@@ -1,0 +1,52 @@
+package day0312;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+
+public class FileDialog03 extends JFrame {
+	Container cp;
+	JTextArea area;
+	JButton btnOpen,btnSave;
+	
+	//생성자
+	public FileDialog03(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 300, 600);
+		
+		
+		cp=this.getContentPane();
+
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(153,204,255));			
+		initDesign();		
+		this.setVisible(true);	
+		
+	}
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		
+		btnOpen=new JButton("파일 불러오기"); //read하는것
+		btnOpen.setBounds(20, 50, 120, 30);
+		this.add(btnOpen);
+		
+		btnSave=new JButton("파일 저장하기"); //write하는것
+		btnSave.setBounds(150, 50, 120, 30);
+		this.add(btnSave);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new FileDialog03("파일 다이얼로그 #03");
+	}
+
+}

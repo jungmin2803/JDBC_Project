@@ -25,6 +25,7 @@ public class SwingBtnEvent4 extends JFrame implements ActionListener {
 		
 		//contentpane을 써야 바뀐게 보임
 		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//백 그라운드 색 변경
 		cp.setBackground(new Color(127,255,212));
 		

@@ -21,6 +21,9 @@ public class SwingEx1 extends JFrame{
 		//this.getContentPane().setBackground(new Color(240,255,255));
 		
 		cp=this.getContentPane();
+		
+		//메인프레임 종료
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cp.setBackground(new Color(127,255,212)); //창 크기 설정
 		this.setVisible(true); //창을 보이게 함
 		

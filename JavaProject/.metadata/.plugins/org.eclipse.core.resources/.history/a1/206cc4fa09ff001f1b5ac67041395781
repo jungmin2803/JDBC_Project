@@ -1,0 +1,59 @@
+package day0312;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
+
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
+public class ComboGraphic06 extends JFrame {
+	Container cp;
+	JComboBox<String> combo;
+	String [] items= {"선","원","네모","이미지","문자열"};
+	int index=3; //이미지를 기본값으로 설정하기 위해서
+	ComboDraw draw;
+	
+	static final String imageName="C:\\sist0217\\logoImg\\a.png";
+	
+	//생성자
+	public ComboGraphic06(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 500, 600);
+		
+		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(153,204,255));		
+		initDesign();		
+		this.setVisible(true);		
+		
+	}
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		
+		combo=new JComboBox<String>(items);
+		combo.setBounds(40, 50, 100, 30);
+		this.add(combo);
+	}
+	
+	class ComboDraw extends Canvas{
+		@Override
+		public void paint(Graphics g) {
+			// TODO Auto-generated method stub
+			super.paint(g);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ComboGraphic06("콤보박스로 그래픽 나타내기 #6");
+	}
+
+}

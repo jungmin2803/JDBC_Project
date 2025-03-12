@@ -29,6 +29,7 @@ public class ArrayRndEvent9 extends JFrame {
 		
 		
 		cp=this.getContentPane();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		cp.setBackground(new Color(127,255,212));	
 		
 		initDesign();
