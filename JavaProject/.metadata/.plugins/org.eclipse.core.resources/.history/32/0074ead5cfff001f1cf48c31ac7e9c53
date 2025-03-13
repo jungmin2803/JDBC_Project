@@ -1,0 +1,108 @@
+package day0313;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class TableIpgoEx00 extends JFrame implements ActionListener {
+
+	Container cp;
+	JTable table;
+	JButton btnAdd,btnDel;
+	JTextField tfSang,tfSu,tfDan;
+	DefaultTableModel model;	
+	
+	//생성자
+	public TableIpgoEx00(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 350, 500);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(245,245,245));		
+		initDesign();
+		
+		//생성 후 불러오기
+		
+		//저장 후 닫기
+		
+		this.setVisible(true);	
+	}
+	
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		//라벨 생성
+		JLabel lbl1=new JLabel("상품명");
+		lbl1.setBounds(50, 40, 80, 30);
+		this.add(lbl1);
+		
+		JLabel lbl2=new JLabel("수량"	);
+		lbl2.setBounds(150, 40, 80, 30);
+		this.add(lbl2);
+		
+		JLabel lbl3=new JLabel("단가");
+		lbl3.setBounds(250, 40, 80, 30);
+		this.add(lbl3);
+		
+		tfSang=new JTextField();
+		tfSang.setBounds(25, 80, 90, 30);
+		this.add(tfSang);
+		
+		tfSu=new JTextField();
+		tfSu.setBounds(120, 80, 90, 30);
+		this.add(tfSu);
+		
+		tfDan=new JTextField();
+		tfDan.setBounds(220, 80, 90, 30);
+		this.add(tfDan);
+		
+		btnAdd=new JButton("추가");
+		btnAdd.setBounds(80, 120, 80, 30);
+		this.add(btnAdd);
+		
+		btnDel=new JButton("삭제");
+		btnDel.setBounds(180, 120, 80, 30);
+		this.add(btnDel);
+		
+		btnAdd.addActionListener(this);
+		btnDel.addActionListener(this);
+		
+		String [] title= {"상품명","수량","단가","총금액"};
+		model=new DefaultTableModel(title,0);
+		table=new JTable(model);
+		JScrollPane js=new JScrollPane(table);
+		js.setBounds(15, 160, 300, 300);
+		this.add(js);
+		
+		
+		
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new TableIpgoEx00("연습00");
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
