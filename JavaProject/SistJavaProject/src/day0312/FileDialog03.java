@@ -56,9 +56,9 @@ public class FileDialog03 extends JFrame {
 		this.add(btnSave);
 		
 		//입력출력 창
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm"); //현재날짜
 		String today=sdf.format(new Date());
-		area =new JTextArea(today);
+		area =new JTextArea(today); //area는 텍스트 여러줄을 쓸때 사용
 		area.setFont(new Font("궁서체", Font.BOLD, 15));
 		
 		
@@ -66,7 +66,7 @@ public class FileDialog03 extends JFrame {
 		JScrollPane js=new JScrollPane(area);
 		js.setBounds(20, 80, 250, 200);		
 		this.add(js);
-		
+		//익명내부클래스
 		btnOpen.addActionListener(new ActionListener() {
 			
 			@Override

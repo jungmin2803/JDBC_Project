@@ -22,23 +22,14 @@ public class GraphicImage04 extends JFrame {
 		super(title);
 		
 		//위치,너비
-		this.setBounds(1000, 100, 500, 600);
-		
-		
+		this.setBounds(1000, 100, 500, 600);		
 		cp=this.getContentPane();
-
 		//메인프레임 종료
-                this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//창 색상
-		cp.setBackground(new Color(153,204,255));
-				
-		
-		this.setVisible(true);
-		
-		
-	}
-	
+		cp.setBackground(new Color(153,204,255));		
+		this.setVisible(true);		
+	}	
 
 	@Override
 	public void paint(Graphics g)
