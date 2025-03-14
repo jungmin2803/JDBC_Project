@@ -6,22 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -50,18 +43,11 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 		cp.setBackground(new Color(245,245,245));		
 		initDesign();
 		
-		//저장 후 닫기
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// TODO Auto-generated method stub
-				super.windowClosing(e);
-				tableDataSave();
-			}
-		});
-		this.setVisible(true);	
 		//생성 후 불러오기
-				tableDataRead();
+		
+		//저장 후 닫기
+		
+		this.setVisible(true);	
 	}
 	
 	//데이타 저장하기
@@ -198,33 +184,7 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 		Object ob=e.getSource();
 		if(ob==btnAdd)
 		{
-			String sang=tfSang.getText();
-			String su=tfSu.getText();
-			String dan=tfDan.getText();
 			
-			if(sang.length()==0||su.length()==0||dan.length()==0)
-			{
-				JOptionPane.showMessageDialog(this, "3개의 값을 입력해주세요");
-				tfSang.setText("");
-				tfSu.setText("");
-				tfDan.setText("");
-				return;
-			}
-			
-			int tot=Integer.parseInt(su)*Integer.parseInt(dan);
-			NumberFormat nf=NumberFormat.getInstance();
-			
-			Vector<String> data=new Vector<String>();
-			data.add(sang);
-			data.add(su);
-			data.add(dan);
-			data.add(nf.format(tot));
-			
-			model.addRow(data);
-			
-			tfSang.setText("");
-			tfSu.setText("");
-			tfDan.setText("");
 		}
 		
 		if(ob==btnDel)

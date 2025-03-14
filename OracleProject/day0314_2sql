@@ -1,0 +1,80 @@
+--[복습]
+select * from emp;
+--emp-comm이 null이 아닌사람중에서 sal이 1500이상인 사람 출력(사원명,급여,커미션)
+select ename,sal,comm 
+from emp 
+where comm is not null 
+and sal >= 1500;
+
+--emp-입사일이 1985/01/01 이후에 입사한 사람만 조회(사원명,입사일,급여)
+select ename,hiredate,sal 
+from emp 
+where hiredate >= '1985/01/01';
+
+--emp-이름,급여,보너스,총급여(급여+보너스)
+select ename 이름, sal 급여, NVL(comm,0) 보너스, sal+NVL(comm,0) 총급여 
+from emp;
+
+--[서브쿼리]_쿼리안에 또다른 쿼리문이 담김
+--SMITH보다 급여를 많이 받는 사람은?
+--select 컬럼1,컬럼2
+--from emp
+--where 조건연산자 (select 컬럼명 from 테이블 where 조건);
+--메인쿼리(서브쿼리)
+select ename, sal 
+from emp 
+where sal > (select sal
+             from emp 
+             where ename='SMITH');
+--서브쿼리가 먼저 수행이 되어 결과 값을 메인쿼리에 전달해 주고 그 값을 받아서 메인쿼리 수행
+ select * from student;
+--student_서진수의 키보다 작은사람의 학생명,학년,키를 출력하시오
+select name,grade,height 
+from student 
+where height < (select height 
+                from student 
+                where name='서진수');
+
+--student_1전공이 101학과의 평균 몸무게 보다 몸무게가 많은 학생명과 몸무게를 출력하시오
+select name, weight
+from student 
+where weight > (select avg(weight) 
+                from student 
+                where deptno1=101);
+
+--emp_평균sal보다 많이 받는 사람의 목록 출력
+select *
+from emp 
+where sal > (select avg(sal) 
+             from emp);
+
+--emp ALLEN의 MGR과 동일한 값을 가진 사람의 모든목록
+select * 
+from emp 
+where MGR = (select MGR 
+             from emp 
+             where ename = 'ALLEN');
+
+select *from professor;
+--professor_조교수의 평균 pay보다 급여가 낮은 사람의 번호,이름,급여를 구하시오
+select profno,name,pay
+from professor 
+where pay < (select avg(pay) 
+             from professor 
+             where position = '조교수');
+
+--student_1학년의 평균키보다 작은학생의 이름,아이디,키를 조회하시오
+select name "이름", id "아이디", height "키" 
+from student 
+where height < (select avg(height) 
+                from student 
+                where grade = 1);
+
+--emp_s로 시작하는 사람과 같은 부서사람의 deptno와 이름을 출력하시오
+select deptno,ename 
+from emp 
+where deptno in (select deptno 
+                 from emp 
+                 where ename 
+                 like 'S%');
+             
