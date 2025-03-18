@@ -1,0 +1,62 @@
+--수업과정
+ --1.일단 비정규화 테이블 _ 데이타를 추가하고 조회
+ --2. 1번을 2개의 테이블로 나누어서 외부키를 이용해 연결해본다
+ --3. 데이타 삭제시 정규화된 테이블의 경우 문제가 발생
+ -- cascade연산자를 이용해서 다시한번 테이블을 생성해보고 삭제연습
+
+--비정규화 테이블
+--회사직원테이블: companysawon
+--회사명: company 문자열(10)
+--회사주소: address 문자열(20)
+--회사전화: phone 문자열(15)
+--직원명: sawon_name 문자열(15)
+--직급: position 문자열(10)
+--이메일: email 문자열(20)
+--휴대폰: hp 문자열(20)
+
+create table companysawon (company varchar2(10), address varchar2(20),
+phone varchar2(15), sawon_name varchar2(15), position varchar2(10),
+email varchar2(20), hp varchar2(20));
+
+insert into companysawon values('LG','서울시 강남구','02-124-5555','홍길동','사원','hkd@gmail.com','010-1234-5678');
+insert into companysawon values('KT','서울시 역삼동','02-258-3333','김선동','대리','ksd@gmail.com','010-3333-4444');
+insert into companysawon values('KIA','서울시 강동구','02-124-5555','홍길동','사원','hkd@gmail.com','010-1234-5678');
+
+--거래처 회사에 대한 정보 : 거래처 직원을 추가할때마다 매번 추가
+--메모리 낭비 심하다
+--만약 회사 이전 승진등등 정보가 변경되면 많은 데이타를 한꺼번에 수정해주어야 한다
+--정규화된 테이블정보로 수정이 필요한 것이다
+
+--2.정규화된 데이터 정보로 수정
+--회사테이블:company
+--회사 아이디: company_id number(5) 기본키
+--회사명: company 문자열(10)
+--회사주소: address 문자열(20)
+--회사전화: phone 문자열(15)
+create table company(company_id number(5) primary key, company varchar2(10), address varchar2(20), phone varchar2(15));
+
+--부모 테이블에 데이터 추가
+insert into company values(10,'KT', '서울시 강남구','02-123-4567');
+insert into company values(20,'LG', '서울시 을지로','02-777-0012');
+insert into company values(30,'삼성', '경기도 분당구','02-555-3333');
+
+--사원테이블:sawon
+--직원명: sawon_name 문자열(15)
+--직급: position 문자열(10)
+--이메일: email 문자열(20)
+--휴대폰: hp 문자열(20)
+--회사 아이디: 외부키
+create table sawon2(company_id number(5),sawon_name varchar2(15), 
+position varchar2(10), email varchar2(20), hp varchar2(20),  
+constraint fk_sawon_id foreign key(company_id) references company(company_id));
+
+--cascade
+create table sawon3(company_id number(5),sawon_name varchar2(15), 
+position varchar2(10), email varchar2(20), hp varchar2(20),  
+constraint fk_sawon_id foreign key(company_id) references company(company_id)
+on delete cascade);
+--on delete cascade :외부키로 테이블이 연결되었다 하더라도 부모테이블의 데이타를 삭제하면
+--자식테이블의 데이타까지 자동으로 삭제시켜 주는 기능
+
+select * from company;
+select * from sawon2;

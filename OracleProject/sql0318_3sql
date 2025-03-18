@@ -1,0 +1,79 @@
+--시퀀스 생성
+create sequence seq_shop;
+
+--shop 테이블(부모테이블)
+create table shop(num number(5) primary key, 
+sangpum varchar2(30), color varchar2(20));
+
+--shop에 5개 이상 상품 추가
+insert into shop values(seq_shop.nextval, '컴퓨터','화이트');
+insert into shop values(seq_shop.nextval, 'TV','블랙');
+insert into shop values(seq_shop.nextval, '세탁기','화이트');
+insert into shop values(seq_shop.nextval, '식기세척기','블랙');
+insert into shop values(seq_shop.nextval, '냉장고','그레이');
+insert into shop values(seq_shop.nextval, '에어컨','화이트');
+insert into shop values(seq_shop.nextval, '인덕션','블랙');
+
+
+--cart1: 자식테이블 shop 테이블의 num값을 외부키로 지정한다
+create table cart1(idx number(5) primary key, 
+num number(5) constraint fk_cart1_num references shop(num), --constraint fk_cart1_num 생략 가능
+cnt number(5), guipday date);
+
+--create table cart1(idx number(5) primary key, 
+--num number(5),
+--cnt number(5), guipday date,
+--constraint fk_cart1_num foreign key(num) references shop(num)); --foreign key를 맨 마지막에 따로 작성 할 경우
+
+--cart2: 부모테이블의 상품을 지우면 그상품과 연결된 카트를 자동으로 지워준다
+create table cart2(idx number(5) primary key, 
+num number(5) constraint fk_cart2_num references shop(num) on delete cascade,
+cnt number(5), guipday date);
+
+--cart1에 상품추가
+insert into cart1 values(seq_shop.nextval,1,2,sysdate);-- 1번 컴퓨터
+insert into cart1 values(seq_shop.nextval,5,1,sysdate);-- 5번 냉장고
+insert into cart1 values(seq_shop.nextval,17,1,sysdate); --17번 에어컨
+insert into cart1 values(seq_shop.nextval,18,1,sysdate); --18번 인덕션
+insert into cart1 values(seq_shop.nextval,4,2,sysdate); --4번 식기세척기
+--shop에 없는 상품 담았을경우
+--insert into cart1 values(seq_shop.nextval,6,1,sysdate); --무결성 제약조건(SEAJ3.FK_CART1_NUM)이 위배되었습니다- 부모 키가 없습니다
+
+--cart2에 상품추가
+insert into cart2 values(seq_shop.nextval,3,3,sysdate); --3번 세탁기
+insert into cart2 values(seq_shop.nextval,2,4,sysdate); --2번 TV
+insert into cart2 values(seq_shop.nextval,1,2,sysdate); --1번 컴퓨터
+insert into cart2 values(seq_shop.nextval,2,1,sysdate); --2번 TV
+insert into cart2 values(seq_shop.nextval,17,3,sysdate); --17번 에어컨
+
+--cart1에는 1번,5번이 추가되었다 이때 shop의 1번 상품을 삭제해보기
+delete from shop where num=1; --무결성 제약조건(SEAJ3.FK_CART1_NUM)이 위배되었습니다- 자식 레코드가 발견되었습니다
+
+--cart1에 담기지 않은 4번 삭제해보기
+delete from shop where num=4; --아무것도 공유하지 않은 4번은 삭제가능
+
+--되돌리기
+rollback;
+
+--cart2..3번 2번 상품이 담겼다 3번 삭제될까?
+delete from shop where num=3;
+
+select * from shop;
+select * from cart1;
+select * from cart2;
+
+--cart1에 담긴 상품을 shop테이블가 join해서 자세히 출력해 보기
+--방법1 --table 풀네임.컬럼명
+select cart1.idx, shop.num, shop.sangpum,shop.color,cart1.cnt,cart1.guipday
+from shop,cart1
+where shop.num=cart1.num;
+
+--방법2 --table에 변수명 붙인 후 컬럼에 변수명.컬럼명
+select c.idx, s.num, s.sangpum,s.color,c.cnt,c.guipday
+from shop s,cart1 c
+where s.num=c.num;
+
+--방법3 --반복되는 컬럼명에만 변수명.컬럼명
+select idx, s.num, sangpum,color,cnt,guipday
+from shop s,cart1 c
+where s.num=c.num;

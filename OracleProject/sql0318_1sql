@@ -1,0 +1,200 @@
+--테이블 생성
+create table sawon (num number(5) constraint sawon_pk_num primary key,
+name varchar2(20), gender varchar2(20), 
+buseo varchar2(20), pay number(10)default 1200000);
+
+--alter로 제약조건 추가가능 (부서명: 개발부, 교육부, 디자인부)
+alter table sawon add constraint ck_sawon_buseo check(buseo in('개발부','교육부','디자인부'));
+
+--제약조건 추가: 남자,여자 만 가능
+alter table sawon add constraint ck_sawon_gender check(gender in('남자','여자'));
+
+--새로운 시퀀스
+create sequence seq_sawon nocache;
+
+--데이타 추가
+insert into sawon values(seq_sawon.nextval,'이승연','남자','교육부',2500000);
+insert into sawon values(seq_sawon.nextval,'김민재','남자','디자인부',3100000);
+insert into sawon values(seq_sawon.nextval,'손연재','여자','디자인부',2800000);
+insert into sawon values(seq_sawon.nextval,'김연아','여자','교육부',3000000);
+insert into sawon values(seq_sawon.nextval,'손흥민','남자','개발부',3300000);
+insert into sawon values(seq_sawon.nextval,'김병지','남자','교육부',3100000);
+insert into sawon values(seq_sawon.nextval,'김하온','남자','개발부',3300000);
+insert into sawon values(seq_sawon.nextval,'박하나','여자','디자인부',2800000);
+insert into sawon values(seq_sawon.nextval,'김승지','여자','개발부',3200000);
+insert into sawon values(seq_sawon.nextval,'이지은','여자','디자인부',2800000);
+
+--수정..조건부 없으면 전체가 바뀜
+update sawon set buseo='교육부';
+--취소
+rollback;
+
+update sawon set buseo='교육부' where num=13;
+
+update sawon set pay=3500000 where name='손흥민';
+
+--여러컬럼 수정 19번 부서: '교육부' 페이: 2800000
+update sawon set buseo='교육부',pay=2800000 where num=19;
+
+--최종저장
+commit;
+
+--그룹함수 사용
+--부서별 인원수와 최고급여, 최저급여 조회( 제목도 한글로)
+select buseo "부 서 명", count(*) "인원 수", max(pay) "최고 급여", min(pay)"최저 급여" from sawon group by buseo;
+
+--화폐단위 붙히고 천단위 구분기호
+
+select buseo "부 서 명", count(*) "인원 수", to_char(max(pay),'L999,999,999') "최고 급여", to_char(min(pay),'L999,999,999')"최저 급여" 
+from sawon 
+group by buseo;
+
+--위의 결과에 인원수 뒤에 명 이라고 붙히기
+
+select buseo "부 서 명", count(*) || '명' "인원 수", to_char(max(pay),'L999,999,999') "최고 급여",to_char(min(pay),'L999,999,999')"최저 급여" 
+from sawon 
+group by buseo;
+
+--성별 인원수와 평균급여, 최고급여, 최저급여를 구하시오
+select gender 성별, count(*)||'명' 인원수, to_char(avg(pay),'L999,999,999') "평균 급여", 
+to_char(max(pay),'L999,999,999') "최고 급여", to_char(min(pay),'L999,999,999') "최저 급여"
+from sawon group by gender;
+
+--부서별 인원이 4명이상인 경우에만 인원수, 평균급여 출력
+select buseo 부서명, count(*)||'명' 인원수, to_char(avg(pay),'L999,999,999')"평균 급여"  
+from sawon group by buseo having count(*)>=4;
+
+--제약조건 제거
+--sawon 테이블의 sawon_ck_buseo를 제거해보기
+alter table sawon drop constraint ck_sawon_buseo;
+insert into sawon values(seq_sawon.nextval,'수지','여자','홍보부',3200000);
+
+
+commit;
+--sawon에 name컬럼에 unique제약조건 추가하기(sawon_uk_name)
+alter table sawon add constraint sawon_uk_name unique(name);
+
+--name 컬럼에 중복이름 넣어보기
+insert into sawon values(seq_sawon.nextval,'박지연','여자','영업부',3200000);
+
+--[JOIN]
+--emp와 dept를 조인해서 emp 사람들의 이름과 부서를 구하시오
+select ename,deptno from emp;
+
+--2개의 테이블을 조합하여 보고싶은 컬럼을 조회할수 있다
+select e.deptno ,e.ename,d.dname --한쪽에만 존재하는 컬럼은 구분을 해줘도 안해줘도 되지만, 양쪽에 존재하는 컬럼은 반드시 구분 필요
+from emp e,dept d
+where e.deptno=d.deptno;
+
+--professor+department를 조인하여 다음과 같이 조회
+--교수명 학과명 급여 를 조회하시오
+select name 교수명, dname 학과명, pay 급여 --한 테이블에만 컬럼명이 존재하여 구분을 안해줘도 된다(해줘도 상관x)
+from professor p, department d
+where p.deptno=d.deptno;
+
+select * from emp;
+
+--emp에 dept에 없는 deptno 를 삽입하거나 null로 인서트 해보자
+insert into emp (empno,ename,job,mgr,hiredate,sal)values(7937,'KIM','MANAGER',7902,sysdate,1200);
+
+--내부조인
+select e.ename,d.dname 
+from emp e,dept d
+where e.deptno=d.deptno;
+
+--LEE와 KIM이 조인에서 조회가 안된다 만약 null까지 조회하고 싶다면 outer join을 이용
+
+select e.ename,d.dname --한쪽에만 존재하는 컬럼은 구분을 해줘도 안해줘도 되지만, 양쪽에 존재하는 컬럼은 반드시 구분 필요
+from emp e,dept d
+where e.deptno=d.deptno(+); --(+) 대상테이블에 값이 없어도 조회가 된다(null)로 
+
+--학생테이블
+--학번 학생이름 학년 제1전공
+--1111 서영주   2  컴퓨터공학과
+
+--한쪽에만 존재하는 컬럼은 구분을 해줘도 안해줘도 되지만, 양쪽에 존재하는 컬럼은 반드시 구분 필요
+select studno 학번, s.name 학생이름, grade 학년, dname 제1전공, p.name 교수명
+from student s,department d ,professor p
+where s.deptno1=d.deptno and s.profno=p.profno;
+
+--panmae+product
+--입고날짜   상품명 상품가격 입고갯수 총가격
+--20240101 새우깡 800     3      24000
+
+select p_date 입고날짜, p_name 상품명,to_char(p_price,'999,999,999') 상품가격, p_qty ||'개' 입고갯수,to_char(p_total,'999,999,999') 총가격
+from panmae pm, product pd
+
+where pm.p_code=pd.p_code; 
+
+--food(부모테이블)생성
+create table food(foodnum number(5) primary Key, foodname varchar(20), 
+foodprice number(10), foodsize varchar2(20));
+
+--booking(자식테이블)생성
+create table booking(bnum number(5) constraint pk_booking_bnum primary key,
+bname varchar2(20) constraint nn_booking_bname not null,
+bhp varchar2(20)constraint uq_booking_bhp unique,
+foodnum number(3), 
+bday date, 
+constraint fk_foodnum foreign key(foodnum) references food(foodnum)); --foodnum을 부모테이블과 연결
+
+--food(부모테이블) 내용 추가
+insert into food values(100,'짜장면',9000,'보통');
+insert into food values(101,'짬뽕',11000,'곱배기');
+insert into food values(102,'탕수육',29000,'대');
+insert into food values(103,'유린기',39000,'대');
+insert into food values(104,'칠리새우',19000,'소');
+insert into food values(105,'울면',9000,'보통');
+
+--저장
+commit;
+
+--시퀀스 생성
+create sequence seq_food start with 10 increment by 10 nocache;
+
+--예약
+--메뉴에 없는 foodnum을 넣으면 부모키가 없다는 제약조건 위배가 나온다
+insert into booking values (seq_food.nextval,'이영지','010-1234-5678',100,sysdate);
+insert into booking values (seq_food.nextval,'이은지','010-1111-5678',101,sysdate);
+insert into booking values (seq_food.nextval,'이국주','010-2222-5678',102,sysdate);
+insert into booking values (seq_food.nextval,'김구라','010-3333-5555',104,sysdate);
+insert into booking values (seq_food.nextval,'김동현','010-4444-6666',105,sysdate);
+
+--INNER JOIN으로 예약손님 주문정보 확인
+--주문자이름,주문자전화번호,음식이름,음식가격,음식사이즈,주문한날짜
+select bname "주문자 이름", bhp "주문자 전화번호", foodname "음식 이름", 
+to_char(foodprice,'999,999,999') "음식 가격", foodsize "음식 사이즈", to_char(bday,'yyyy-mm-dd hh:mi') "주문한 날짜"
+from food f, booking b
+where f.foodnum=b.foodnum;
+
+--outer_join을 이용해서 한번도 주문하지 않은 메뉴들을 알아보기
+select f.foodnum,bname,foodname,foodprice,foodsize
+from food f,booking b
+where f.foodnum=b.foodnum(+); --이때 아무도 주문하지 않은 메뉴는 주문자가 null로 나온다
+
+--위의 sql 통해서 주문자 이름 빼고 null인 경우만 출력하면 아무도 주문하지 않은 메뉴만 골라낼수 있다
+select f.foodnum,foodname,foodprice,foodsize
+from food f, booking b
+where f.foodnum=b.foodnum(+) and bname is null;
+
+--booking(자식테이블) 에 추가된 메뉴를 food(부모테이블)에서 삭제할수 있을까?
+--자식테이블 생성시 on delete cascade 설정을 안했을 경우 못지운다
+delete from food where foodnum=101; --삭제 불가(booking테이블에서 주문했으므로 101번은 못지운다)
+
+--아무도 주문하지 않은 105번 지워보자
+delete from food where foodnum=105; --삭제가능(자식테이블에서 주문 안했으므로)
+
+--부모테이블 삭제
+drop table food; --삭제안됨,자식테이블을 먼저 삭제해야 부모테이블도 삭제가 가능
+
+--booking(자식테이블) 먼저 지우고 food(부모테이블) 삭제 순으로 가야한다
+drop table booking;
+drop table food;
+
+--시퀀스 삭제
+drop sequence seq_food;
+
+
+desc food;
+select * from food;
+select * from booking;

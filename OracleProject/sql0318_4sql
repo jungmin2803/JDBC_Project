@@ -1,0 +1,55 @@
+--[과제물_조인,외부키 문제]
+--시퀀스: seq_food 1부터 3씩증가 캐시없음
+--테이블명:foodmenu(부모)
+--시퀀스는 같아도 달라도 됩니다 
+--제약조건은 알아서 주시면 됩니다
+--시퀀스(fno)  음식명(food_name)  가격(price)  상호명(shop_name)  가게위치(loc)
+--1           알리오올리오         15000       쏘렌토             역삼역 2번출구
+--최소 데이터 5개이상 insert
+
+--자식테이블 (배달 가능지역 확인해서 만들기)
+--테이블명 : foodorder(자식)
+-- : 외부키는 foodmenu의 fno를 외부키로 설정(부모데이타 삭제시 자식데이타 자동삭제되도록)
+-- 시퀀스  주문자(order_name)   음식번호(fno)-외부키 주문자주소(addr)
+--20        이영지             1                 역삼동
+
+--출력해서 제출(배민처럼)
+
+--시퀀스 생성
+create sequence seq_food increment by 3 nocache;
+
+--부모테이블 생성
+create table foodmenu (fno number(5) primary key, food_name varchar2(20),
+price number(10), shop_name varchar2(30), loc varchar2(30));
+
+--자식테이블 생성
+create table foodorder(odno number(5) primary key,order_name varchar2(20),
+fno number(5), addr varchar2(20),constraint fk_fod_fno foreign key(fno) references foodmenu(fno) on delete cascade);
+
+
+
+--부모테이블에 가게 추가하기
+insert into foodmenu values(seq_food.nextval, '짜장면',6500,'용궁각','역삼동 1번출구 앞');
+insert into foodmenu values(seq_food.nextval, '불고기버거',5500,'맥도날드','역삼동 3번출구 앞');
+insert into foodmenu values(seq_food.nextval, '페페로니피자',14500,'도미노피자','역삼동 2번출구 앞');
+insert into foodmenu values(seq_food.nextval, '엽기떡볶이',16000,'동대문엽기떡볶이','역삼동 1번출구 앞');
+insert into foodmenu values(seq_food.nextval, '블랙밀크티',5000,'공차','역삼동 4번출구 앞');
+alter table foodorder modify addr varchar2(40);
+
+--자식테이블에 가게 추가하기
+insert into foodorder values(seq_food.nextval, '홍길동',1,'서초우성5차아파트 501호');
+insert into foodorder values(seq_food.nextval, '이지은',10,'서초동 삼성 쉐르빌2 201호');
+insert into foodorder values(seq_food.nextval, '손흥민',7,'서초그랑자이아파트 1001호');
+insert into foodorder values(seq_food.nextval, '박보검',10,'역삼하이츠빌딩 5층');
+insert into foodorder values(seq_food.nextval, '강호동',1,'역삼우성아파트 802호');
+insert into foodorder values(seq_food.nextval, '수지' ,4,'역삼타운하우스2층');
+
+select *from foodmenu;
+select *from foodorder;
+
+select odno "주문번호", order_name "주문자", food_name "음식명", price "가격", shop_name "상호명", loc "가계 위치", addr "주문자 주소"
+from foodmenu fm, foodorder fo
+where fm.fno=fo.fno
+order by order_name;
+
+commit;
