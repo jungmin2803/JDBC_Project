@@ -1,0 +1,50 @@
+package day0319;
+
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ConnectTestEx1 {
+	
+	static final String URL="jdbc:oracle:thin:@localhost:1521:XE";
+	
+	public void connectSawon()
+	{	
+		Connection conn=null;
+		Statement stmt=null; 
+		ResultSet rs=null; 
+		
+		String sql="select * from sawon order by num"; //사원테이블을 num의 오름차순 정렬하여 조회
+		
+		//Connection으로 오라클 연결하기
+		try {
+			conn=DriverManager.getConnection(URL, "seaj3", "a1234");
+			
+			System.out.println("오라클서버에 연결성공!!!");
+			
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next())
+			{
+				//db로부터 데이타 가져오기
+				rs.getInt("num");
+			}
+					
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("오라클서버에 연결실패!!!");
+			
+		}
+	}
+	public static void main(String[] args) {
+	
+	ConnectTestEx1 ct=new ConnectTestEx1();
+	ct.connectSawon();
+	
+		
+		
+	}
+}

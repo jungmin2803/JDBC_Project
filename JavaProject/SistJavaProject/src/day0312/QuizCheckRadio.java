@@ -5,8 +5,6 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -48,13 +46,13 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//창 색상
-<<<<<<< HEAD
+
 		cp.setBackground(new Color(211, 211, 211));
 		
-=======
+
 		cp.setBackground(new Color(153,204,255));
 
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 		initDesign();
 
 
@@ -74,11 +72,11 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		for(int i=0;i<rb2.length;i++)
 		{
 			rb2[i]=new JRadioButton(str1[i],i==1?true:false);
-<<<<<<< HEAD
+
 			rb2[i].setForeground(color[i]);
-=======
+
 			rb2[i].setForeground(color[i]);	
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 			rb2[i].setOpaque(false);
 			pTop1.add(rb2[i]);
 			bg.add(rb2[i]);				
@@ -111,7 +109,7 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		ButtonGroup bg1=new ButtonGroup();
 		for(int i=0;i<rb1.length;i++)
 		{
-<<<<<<< HEAD
+
 			rb1[i]=new JRadioButton(str2[i],i==0?true:false);
 			rb1[i].setOpaque(false);
 			pTop2.add(rb1[i]);
@@ -135,14 +133,14 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 						lblmsg.setText("여자입니다");
 				}
 			});
-=======
+
 			rb1[i]=new JRadioButton(str2[i],i==0?true:false);			
 			rb1[i].setOpaque(false);
 			pTop2.add(rb1[i]);
 			bg1.add(rb1[i]);
 
 			rb1[i].addActionListener(this);
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 		}
 
 		String [] str3= {"일본","독일","중국","캐나다","미국","베트남"};
@@ -154,15 +152,15 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		for(int i=0;i<cb.length;i++)
 		{
 			cb[i]=new JCheckBox(str3[i]);
-<<<<<<< HEAD
+
 			cb[i].setOpaque(false);
 			pTop3.add(cb[i]);				
 			
-=======
+
 			pTop3.add(cb[i]);
 			cb[i].setOpaque(false);
 
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 		}
 
 
@@ -172,7 +170,7 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		lblmsg.setBounds(100, 400, 400, 50);
 		lblmsg.setBorder(new LineBorder(Color.BLACK,2));
 		this.add(lblmsg);
-<<<<<<< HEAD
+
 		
 		//버튼
 		btn1=new JButton("내가 여행한 나라는?");
@@ -181,7 +179,7 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		this.add(btn1);		
 		btn1.addActionListener(this);
 		
-=======
+
 
 		btn1=new JButton("내가 여행한 나라는?");
 		btn1.setBounds(100, 300, 400, 50);
@@ -189,15 +187,15 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 		btn1.addActionListener(this);
 
 		this.add(btn1);
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object ob=e.getSource();
 		
-<<<<<<< HEAD
-=======
+
+
 		
 			for(int i=0; i<rb2.length;i++)
 			{	if(ob==rb2[i])
@@ -221,34 +219,33 @@ public class QuizCheckRadio extends JFrame implements ActionListener{
 
 		
 	}
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 		//나라
 		String msg="내가 여행한 나라는 ";
 		int cnt=0;
 		for(int i=0;i<cb.length;i++)
 		{
 			if(cb[i].isSelected()==true)
-<<<<<<< HEAD
+
 				{
 				cnt++;
 				msg+=cb[i].getText()+"  ";
 				}
 					
-=======
+
 			{cnt++;
 			msg+=cb[i].getText()+"  ";
 			}
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 		}
 		if(cnt==0)
 			lblmsg.setText("내가 여행한 나라가 없어요");
 		else
 			msg+="입니다";
 		lblmsg.setText(msg);
-<<<<<<< HEAD
+
 		
-=======
->>>>>>> b58cebfab85047e8581b80342f5a5832587f89b8
+
 	}
 
 	public static void main(String[] args) {

@@ -1,0 +1,64 @@
+package day0319;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+public class Ex00connectTest {
+	
+	DbConnect db=new DbConnect();
+	
+	public void insert()
+	{
+		String name, addr;
+		String sql;
+		
+		Connection conn=null;
+		Statement stmt=null;
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("이름을 입력해 주세요");
+		name=sc.nextLine();
+		System.out.println("주소를 입력해 주세요");
+		addr=sc.nextLine();
+		
+		sql="insert into hello values (seq_test.nextval, '"+name+"','"+addr+"',sysdate)";
+		conn=db.getConnection();
+		try {
+			stmt=conn.createStatement();
+			stmt.execute(sql);
+			
+			System.out.println("**추가됨**");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(stmt, conn);
+		}		
+	}
+	
+	//수정_
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Ex00connectTest ex0=new Ex00connectTest();
+		
+		Scanner sc=new Scanner(System.in);
+		int n;
+		System.out.println("1. insert 2.select 3. delete 4. update 9.exit");
+		n=Integer.parseInt(sc.nextLine());
+		
+		while(true)
+		{
+		if(n==1)
+		ex0.insert();
+		else if(n==9)
+		{
+			System.out.println("종료되었습니다");
+			break;
+		}
+		
+		}
+	}
+
+}

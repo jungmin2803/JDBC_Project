@@ -1,0 +1,54 @@
+--join & foreign key 복습
+
+--시퀀스
+create sequence seq_board;
+
+--부모테이블
+create table board (bno number(3) constraint board_pk_bno primary key,
+writer varchar2(30), subject varchar2(50), writeday date);
+
+--게시글 board에 5개의 데이타 insert 하자
+insert into board values(seq_board.nextval, '오늘도 열심히','안녕하세요 오늘 가입했어요',sysdate);
+insert into board values(seq_board.nextval, '졸린개미','졸음깨는 방법',sysdate);
+insert into board values(seq_board.nextval, '나무늘보','일찍 일어나 출근하는 방법',sysdate);
+insert into board values(seq_board.nextval, '코딩하는 배짱이','오라클 배우는 법',sysdate);
+insert into board values(seq_board.nextval, '집가는 팬더','앞구르기 하는 법',sysdate);
+
+commit;
+--자식테이블
+--부모글 지우면 그글에 달린 댓글은 자동으로 삭제되도록 설정
+create table answer(num number(5) constraint answer_pk_num primary key,
+bno number(5) constraint answer_fk_bno references board(bno) on delete cascade,
+nickname varchar2(30), content varchar2(100));
+
+--원하는 글번호에 댓글 추가
+insert into answer values(seq_board.nextval,4,'코배','오늘은 JOIN 배우는날');
+insert into answer values(seq_board.nextval,1,'병아리','안녕하세요 햇병아리입니다');
+insert into answer values(seq_board.nextval,2,'졸개','많이 자면 된다');
+insert into answer values(seq_board.nextval,3,'신형만','알람 맞춰라');
+insert into answer values(seq_board.nextval,5,'람머스','구른다');
+commit;
+update answer set content='구른다' where nickname='람머스';
+--JOIN으로 출력
+
+
+--bno(글번호) writer(작성자) subject(제목) nickname(댓글단사람) content(댓글내용) writeday(원글 올린날짜)
+select b.bno 글번호, writer 작성자, subject 제목,
+nickname 댓글단사람, content 댓글내용, writeday "원글 올린날짜"
+from board b, answer a
+where b.bno=a.bno
+order by b.bno;
+
+select * from board;
+select * from answer;
+
+create sequence seq_test;
+
+create table hello(num number(5) primary key, name varchar2(20), addr varchar2(30),
+sdate date);
+commit;
+select * from hello;
+
+select num, name, addr, sdate from hello;
+
+
