@@ -28,29 +28,26 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class TableIpgoEx00 extends JFrame implements ActionListener {
-
-	Container cp;
-	JTable table;
+	
+	Container ct;
 	JButton btnAdd,btnDel;
 	JTextField tfSang,tfSu,tfDan;
-	DefaultTableModel model;	
-	static final String FILENAME="C:\\sist0217\\work\\ExTable.txt";
-	int selectRow=-1;
+	DefaultTableModel model;
+	JTable table;
+	
+	static final String FILENAME="C:\\sist0217\\work\\sangipgo.txt";
 	
 	//생성자
 	public TableIpgoEx00(String title) {
-		super(title);
 		
-		//위치,너비
-		this.setBounds(1000, 100, 350, 500);		
-		cp=this.getContentPane();
-		//메인프레임 종료
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//창 색상
-		cp.setBackground(new Color(245,245,245));		
+		this.setBounds(100, 30, 300, 500);
+		
+		ct=this.getContentPane();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		ct.setBackground(Color.white);
 		initDesign();
 		
-		//저장 후 닫기
 		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -59,9 +56,9 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 				tableDataSave();
 			}
 		});
-		this.setVisible(true);	
-		//생성 후 불러오기
-				tableDataRead();
+		
+		this.setVisible(true);
+		
 	}
 	
 	//데이타 저장하기
@@ -69,16 +66,18 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 		FileWriter fw=null;
 		try {
 			fw=new FileWriter(FILENAME);
+			
 			for(int i=0;i<table.getRowCount();i++)
 			{
 				String s="";
 				for(int j=0;j<table.getColumnCount();j++)
 				{
-					s+=table.getValueAt(i, j);					
+					s+=table.getValueAt(i, j)+":";
 				}
 				s=s.substring(0, s.length()-1);
-				fw.append(s+"\n");
+				fw.write(s+"\n");
 			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,37 +95,7 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 	
 	//데이타 불러오기
 	public void tableDataRead() {
-		FileReader fr=null;
-		BufferedReader br=null;
-				
-		try {
-			fr=new FileReader(FILENAME);
-			br=new BufferedReader(fr);
-			
-			while(true)
-			{
-			String s=br.readLine();
-			if(s==null)
-				break;
-			String []data=s.split(":");
-			model.addRow(data);
-			
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (IOException e) {
-			// TODO: handle exception
-		}finally {
-			try {
-				br.close();
-				fr.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
+	
 		
 	}
 	
@@ -135,107 +104,75 @@ public class TableIpgoEx00 extends JFrame implements ActionListener {
 	public void initDesign()
 	{
 		this.setLayout(null);
-		//라벨 생성
-		JLabel lbl1=new JLabel("상품명");
-		lbl1.setBounds(50, 40, 80, 30);
-		this.add(lbl1);
+		JLabel lblsang=new JLabel("상품명");
+		JLabel lblSu=new JLabel("수량");
+		JLabel lblDan=new JLabel("단가");
 		
-		JLabel lbl2=new JLabel("수량"	);
-		lbl2.setBounds(150, 40, 80, 30);
-		this.add(lbl2);
+		lblsang.setBounds(35, 30, 100, 30);
+		this.add(lblsang);
 		
-		JLabel lbl3=new JLabel("단가");
-		lbl3.setBounds(250, 40, 80, 30);
-		this.add(lbl3);
+		lblSu.setBounds(130, 30, 100, 30);
+		this.add(lblSu);
+		
+		lblDan.setBounds(230, 30, 100, 30);
+		this.add(lblDan);
 		
 		tfSang=new JTextField();
-		tfSang.setBounds(25, 80, 90, 30);
+		tfSu=new JTextField();
+		tfDan=new JTextField();
+		
+		tfSang.setBounds(10, 60, 80, 30);
 		this.add(tfSang);
 		
-		tfSu=new JTextField();
-		tfSu.setBounds(120, 80, 90, 30);
+		tfSu.setBounds(105, 60, 80, 30);
 		this.add(tfSu);
 		
-		tfDan=new JTextField();
-		tfDan.setBounds(220, 80, 90, 30);
+		tfDan.setBounds(200, 60, 80, 30);
 		this.add(tfDan);
 		
 		btnAdd=new JButton("추가");
-		btnAdd.setBounds(80, 120, 80, 30);
+		btnDel=new JButton("삭제"	);
+		
+		btnAdd.setBounds(50, 110, 80, 30);
 		this.add(btnAdd);
 		
-		btnDel=new JButton("삭제");
-		btnDel.setBounds(180, 120, 80, 30);
+		btnDel.setBounds(160, 110, 80, 30);
 		this.add(btnDel);
 		
+		//버튼2개 이벤트 추가
 		btnAdd.addActionListener(this);
 		btnDel.addActionListener(this);
 		
+		//테이블 생성
 		String [] title= {"상품명","수량","단가","총금액"};
-		model=new DefaultTableModel(title,0);
+		model= new DefaultTableModel(title, 0); //행의 갯수 0
 		table=new JTable(model);
 		JScrollPane js=new JScrollPane(table);
-		js.setBounds(15, 160, 300, 300);
+		js.setBounds(10, 150, 265, 300);
 		this.add(js);
-		
-		//행 선택시 selectRow에 저장
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				super.mouseClicked(e);
-				
-				selectRow=table.getSelectedRow();
-			}
-		});
 		
 		
 	}
 	
+	
+		
+	
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new TableIpgoEx00("연습00");
+		
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object ob=e.getSource();
 		if(ob==btnAdd)
 		{
-			String sang=tfSang.getText();
-			String su=tfSu.getText();
-			String dan=tfDan.getText();
-			
-			if(sang.length()==0||su.length()==0||dan.length()==0)
-			{
-				JOptionPane.showMessageDialog(this, "3개의 값을 입력해주세요");
-				tfSang.setText("");
-				tfSu.setText("");
-				tfDan.setText("");
-				return;
-			}
-			
-			int tot=Integer.parseInt(su)*Integer.parseInt(dan);
-			NumberFormat nf=NumberFormat.getInstance();
-			
-			Vector<String> data=new Vector<String>();
-			data.add(sang);
-			data.add(su);
-			data.add(dan);
-			data.add(nf.format(tot));
-			
-			model.addRow(data);
-			
-			tfSang.setText("");
-			tfSu.setText("");
-			tfDan.setText("");
-		}
-		
-		if(ob==btnDel)
-		{
 			
 		}
-		
-	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new TableIpgoEx00("연습00");
 		
 	}
 

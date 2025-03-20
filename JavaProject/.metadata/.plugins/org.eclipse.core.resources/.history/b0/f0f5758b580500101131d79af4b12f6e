@@ -1,0 +1,106 @@
+package day0320;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Scanner;
+
+import day0319.DbConnect;
+
+public class MyCludCrud {
+
+	DbConnect db=new DbConnect();
+	
+	public void insert() {
+		Scanner sc=new Scanner(System.in);
+		Connection conn=db.getConnection();
+		Statement stmt=null;
+		
+		String sql="";
+		System.out.print("회원명: ");
+		String cname=sc.nextLine();
+		System.out.print("주소: ");
+		String caddress=sc.nextLine();
+		System.out.print("직급: ");
+		String cposition=sc.nextLine();
+		System.out.println("전화번호: ");
+		String chp=sc.nextLine();
+		
+		
+		sql="insert into myclub values(seq_club.nextval, '"+cname+"', '"+caddress+"', '"+cposition+"', '"
+		+chp+"',100000, sysdate)";
+		System.out.println(sql);
+		
+		try {
+			stmt=conn.createStatement();
+			int n=stmt.executeUpdate(sql);
+			if(n==0)
+				System.out.println("회원가입 실패");
+			else
+				System.out.println("회원가입 되었습니다");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(stmt, conn);
+		}		
+	}
+	public void select() {
+		Connection conn=db.getConnection();
+		Statement stmt=null;
+		ResultSet rs=null;
+		
+		String sql="select cno,cname, caddress, cposition , chp, to_char(cfee,'999,999,999') cfee, gaipday"
+				+ "from myclub order by cno";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			System.out.println("회번번호\t회원명\t주소\n직급\t전화번호\t회비\n가입일");
+			System.out.println("==================================================================");
+			while(rs.next())
+			{
+				int con=rs.getInt("con");
+				String cname=rs.getString("cname");
+				String caddress=rs.getString("caddress");
+				String cposition=rs.getString("cposition");
+				String chp=rs.getString("chp");
+				String cfee=rs.getString("cfee");
+				Date gaipday=rs.getDate("gaipday");
+				
+				System.out.println(con+"\t"+cname+"\t"+caddress+"\n"+cposition+"\t"+chp+"\t"+cfee+"\n"+gaipday);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+		}
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MyCludCrud mc=new MyCludCrud();
+		Scanner sc=new Scanner(System.in);
+		int num;
+		while(true)
+		{
+			System.out.println("1.회원가입 2.전체회원출력 3.회원정보수정\n  4.회원삭제  9.종료");
+			num=Integer.parseInt(sc.nextLine());
+			if(num==1)
+				mc.insert();
+			if(num==2)
+				mc.select();
+			if(num==9)
+			{
+				System.out.println("프로그램종료");
+				break;
+			}
+			
+		}
+	}
+
+}

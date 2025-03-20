@@ -17,8 +17,8 @@ public class DbConnect {
 		Connection conn=null;
 		
 		try {
-			conn=DriverManager.getConnection(URL, "seaj3", "a1234");
-			System.out.println("오라클 연결 성공!!!");
+			conn=DriverManager.getConnection(URL, "asdf52899", "a1234");
+			//System.out.println("오라클 연결 성공!!!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("오라클 연결 실패!!!");
@@ -58,6 +58,8 @@ public class DbConnect {
 		try {
 			if(rs!=null) rs.close();
 			if(pstmt!=null) pstmt.close();
+			
+			
 			if(conn!=null) conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

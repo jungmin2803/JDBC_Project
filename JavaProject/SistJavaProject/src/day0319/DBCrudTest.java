@@ -83,7 +83,7 @@ public class DBCrudTest {
 	}
 	//삭제_메인에서 삭제할 번호는 ? 1 1번만 삭제되는걸로 
 	public void delete()
-	{
+	{	
 		Scanner sc=new Scanner(System.in);
 		int num;		
 		String sql="";
@@ -118,31 +118,45 @@ public class DBCrudTest {
 	}
 	//수정_수정하고 싶은 번호를 입력해서 이름과 주소를 수정
 	 public void update()
-	{		
+	{	
 		Scanner sc=new Scanner(System.in);
 		Connection conn=null;
 		Statement stmt=null;
 		String sql="";
 		String name, addr;
 		int su,num;
-		System.out.println("1. 이름 2. 주소 ");
-		num=Integer.parseInt(sc.nextLine());		
+		this.select();
+		System.out.println("수정할 번호를 입력하시오");
+		num=Integer.parseInt(sc.nextLine());
 		
-		if(num==1)
+		if(!this.isData(num))
 		{
-		System.out.println("수정할 행번호는 ?");
-		su=Integer.parseInt(sc.nextLine());
-		System.out.println("수정할 이름은 ?");
-		name=sc.nextLine();
-		sql="update hello set name='"+name+"' where num="+su;
+			System.out.println("해당 번호는 존재하지 않습니다");
+			return;
 		}
-		else if(num==2)
+		/*
+		System.out.println("수정할 이름을 선택하시오");
+		name=sc.nextLine();
+		System.out.println("수정할 주소를 선택하시오");
+		addr=sc.nextLine();
+		sql="update hello set name='"+name+"', addr='"+addr+"' where num="+num;
+		*/		
+		
+		System.out.println("수정할 항목을 선택하시오 1. 이름 2. 주소 ");
+		su=Integer.parseInt(sc.nextLine());				
+	
+		if(su==1)
+		{		
+			System.out.println("수정할 이름은 ?");
+			name=sc.nextLine();
+			sql="update hello set name='"+name+"' where num="+num;
+		}
+		else if(su==2)
 		{
-			System.out.println("수정할 행번호는 ?");
-			su=Integer.parseInt(sc.nextLine());
+			
 			System.out.println("수정할 주소는 ?");
 			addr=sc.nextLine();
-			sql="update hello set addr='"+addr+"' where num="+su;
+			sql="update hello set addr='"+addr+"' where num="+num;
 		}
 		else
 		{
@@ -152,23 +166,51 @@ public class DBCrudTest {
 		conn=db.getConnection();
 		try {
 			stmt=conn.createStatement();
-			boolean a=stmt.execute(sql); // 맞으면 true 반환
+			int a=stmt.executeUpdate(sql); // 맞으면 true 반환
 			
-			if(a==false)
+			if(a==0)
 			{
-				System.out.println("수정되었습니다");
+				System.out.println("수정할 데이터가 존재하지 않습니다");
 			}
 			else
-				System.out.println("수정되지 않았습니다");
+				System.out.println("**수정이 완료되었습니다**");
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			db.dbClose(stmt, conn);
-		}
-		
+		}		
 	}
+	 
+	 //수정할 하나의 데이터 조회
+	 
+	 public boolean isData(int num)
+	 {
+		 //num에 해당하는 데이타가 있으면 true, 없으면 false 반환
+		 boolean flag=false;
+		 
+		 String sql="select * from hello where num="+num;
+		 Connection conn=db.getConnection();
+		 Statement stmt=null;
+		 ResultSet rs=null;
+		 try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			
+			//1개일 경우는 if
+			if(rs.next()) //데이타가 있는 경우 true
+				flag=true;
+			else  //데이타가 없는 경우 false
+				flag=false; 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, stmt, conn);
+		}		 
+		 return flag;
+	 }
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
