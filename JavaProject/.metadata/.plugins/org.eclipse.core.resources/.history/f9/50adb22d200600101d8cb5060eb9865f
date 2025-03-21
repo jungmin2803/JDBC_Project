@@ -1,0 +1,45 @@
+package day0321;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import day0319.DbConnect;
+
+public class SawonDbSwing extends JFrame {
+
+	DbConnect db=new DbConnect();
+	Container cp;
+	
+	
+	//생성자
+	public SawonDbSwing(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 700, 600);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(245,245,245));		
+		initDesign();
+		this.setVisible(true);	
+	}
+	
+	public void initDesign()
+	{
+		
+	}
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	SawonDbSwing sd=new SawonDbSwing("사원테이블 DB");
+	}
+
+}
