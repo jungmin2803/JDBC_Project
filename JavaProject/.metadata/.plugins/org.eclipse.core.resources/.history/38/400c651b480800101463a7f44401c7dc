@@ -1,0 +1,71 @@
+package day0321;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class Ex00SawonDBSwing extends JFrame {
+
+	Container cp;
+	JButton btnAdd, btnDel;
+	DefaultTableModel model;
+	JTable table;	
+	JRadioButton [] rb= new JRadioButton[6];
+	
+	//생성자
+	public Ex00SawonDBSwing(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(600, 100, 700, 600);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(245,245,245));		
+		initDesign();
+		this.setVisible(true);	
+	}
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		
+		String [] title = {"번호","ID","학생명","주소","혈액형","핸드폰번호","학년","나이","생일","입력날짜"};
+		model=new DefaultTableModel(title, 0);
+		table=new JTable(model);
+		JScrollPane js=new JScrollPane(table);
+		js.setBounds(5, 200, 675, 350);
+		this.add(js);
+		
+		ButtonGroup bg=new ButtonGroup();
+		String [] rb_label={"전체","남자","여자","홍보부","개발부","디자인부"};
+		
+		int xpos=20;
+		for(int i=0; i<rb_label.length;i++)
+		{
+			rb[i]=new JRadioButton(rb_label[i],i==1?true:false);
+			rb[i].setBounds(xpos, 150, 80, 30);
+			rb[i].setOpaque(false);
+			bg.add(rb[i]);
+			this.add(rb[i]);
+			
+			xpos+=110;
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Ex00SawonDBSwing("스윙 연습");
+	}
+
+}

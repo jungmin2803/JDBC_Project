@@ -224,8 +224,39 @@ public class SawonDbSwing extends JFrame implements ItemListener,ActionListener 
 		}
 		else if(ob==btnDel)
 		{
-			sql="delete from sawon where "
+			//행번호 얻기
+			int row=table.getSelectedRow();
+			System.out.println(row);
 			
+			//선택안했을경우
+			if(row==-1)
+			{
+				JOptionPane.showMessageDialog(this, "삭제할 행을 먼저 선택해주세요");
+				return;
+			}
+			
+			//선택한 행의 id(num)얻기
+			String num =(String)model.getValueAt(row, 1);
+			System.out.println(num);
+			
+			//db데이타 삭제 테이블 다시출력(전체)
+			sql="delete from sawon where num=?";
+			try {
+				pstmt=conn.prepareStatement(sql);				
+				//num바인딩
+				pstmt.setString(1, num);				
+				//실행
+				pstmt.execute();
+				
+				//전체데이타 다시 불러오기
+				this.sawonTableSelect(1);
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}finally {
+				db.dbClose(pstmt, conn);
+			}
 			
 			
 			

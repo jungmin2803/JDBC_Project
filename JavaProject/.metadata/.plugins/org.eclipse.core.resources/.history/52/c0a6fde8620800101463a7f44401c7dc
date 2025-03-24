@@ -1,0 +1,107 @@
+package day0324;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class UpdateScore extends JFrame {
+
+	Container cp;
+	JTextField tfName, tfJava, tfJsp, tfSpring;
+	JComboBox<String> cbBan;
+	JButton btnAdd; //입력한 점수를 메인에 추가하는 버튼
+	
+	//생성자
+	public UpdateScore(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 600, 350);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(245,245,245));		
+		initDesign();
+		this.setVisible(true);	
+	}
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		JLabel title1=new JLabel("수정할 학생 정보");
+		JLabel title2=new JLabel("학생명");
+		JLabel title3=new JLabel("반");
+		JLabel title4=new JLabel("Java");
+		JLabel title5=new JLabel("Jsp");
+		JLabel title6=new JLabel("Spring");
+		
+		
+		title1.setBounds(20, 10, 90, 30);
+		this.add(title1);		
+		title2.setBounds(20, 40, 60, 30);
+		this.add(title2);
+		title3.setBounds(20, 70, 60, 30);
+		this.add(title3);
+		title4.setBounds(20, 110, 60, 30);
+		this.add(title4);
+		title5.setBounds(20, 150, 60, 30);
+		this.add(title5);
+		title6.setBounds(20, 190, 60, 30);
+		this.add(title6);
+		
+		
+		tfName=new JTextField();
+		String [] ban= {"1강의장","2강의장","3강의장","4강의장"};
+		cbBan=new JComboBox<String>(ban);
+		tfJava=new JTextField();		
+		tfJsp=new JTextField();
+		tfSpring=new JTextField();
+		
+		JLabel lblName=new JLabel("학생명");
+		JLabel lblBan=new JLabel("반");
+		JLabel lblJava=new JLabel("Java");
+		JLabel lblJsp=new JLabel("Jsp");
+		JLabel lblSpring=new JLabel("Spring");
+		
+		
+		lblName.setText(getName());
+		
+		
+		String sql="select * from stuscore where num=?";
+		
+		
+		
+	
+		
+		tfName.setBounds(90, 45, 70, 20);
+		tfName.getText();
+		this.add(tfName);		
+		cbBan.setBounds(90, 80, 70, 20);
+		this.add(cbBan);		
+		tfJava.setBounds(90, 120, 70, 20);
+		this.add(tfJava);		
+		tfJsp.setBounds(90, 160, 70, 20);
+		this.add(tfJsp);		
+		tfSpring.setBounds(90, 200, 70, 20);
+		this.add(tfSpring);
+		
+		//버튼
+		btnAdd=new JButton("점수수정");
+		btnAdd.setBounds(50, 240, 90, 30);
+		
+		this.add(btnAdd);
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		new UpdateScore("성적 수정 폼");
+	}
+}

@@ -1,0 +1,64 @@
+package day0324;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class AddScore extends JFrame{
+	
+	Container cp;
+	JTextField tfName, tfJava, tfJsp, tfSpring;
+	JComboBox<String> cbBan;
+	JButton btnAdd; //입력한 점수를 메인에 추가하는 버튼
+	
+	//생성자
+	public AddScore(String title) {
+		super(title);
+		
+		//위치,너비
+		this.setBounds(1000, 100, 200, 300);		
+		cp=this.getContentPane();
+		//메인프레임 종료
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//창 색상
+		cp.setBackground(new Color(245,245,245));		
+		initDesign();
+		this.setVisible(true);	
+	}
+	
+	public void initDesign()
+	{
+		this.setLayout(null);
+		JLabel title1=new JLabel("학생명");
+		JLabel title2=new JLabel("반");
+		JLabel title3=new JLabel("Java");
+		JLabel title4=new JLabel("Jsp");
+		JLabel title5=new JLabel("Spring");
+		
+		title1.setBounds(20, 10, 60, 30);
+		this.add(title1);		
+		title2.setBounds(20, 40, 60, 30);
+		this.add(title2);
+		title3.setBounds(20, 70, 60, 30);
+		this.add(title3);
+		title4.setBounds(20, 110, 60, 30);
+		this.add(title4);
+		title5.setBounds(20, 150, 60, 30);
+		this.add(title5);
+		
+		tfName=new JTextField();
+		
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new AddScore("성적 추가폼");
+	}
+
+}
