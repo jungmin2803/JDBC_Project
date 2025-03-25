@@ -1,8 +1,6 @@
 package day0304;
 
-import java.lang.classfile.instruction.SwitchCase;
 import java.util.Scanner;
-import java.util.prefs.BackingStoreException;
 
 //다형성 예시
 

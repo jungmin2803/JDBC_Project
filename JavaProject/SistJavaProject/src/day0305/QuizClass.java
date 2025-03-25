@@ -1,6 +1,5 @@
 package day0305;
 
-import java.awt.desktop.SystemSleepEvent;
 import java.text.NumberFormat;
 import java.util.Scanner;
 
